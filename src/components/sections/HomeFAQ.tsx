@@ -7,7 +7,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export function HomeFAQ() {
   return (
-    <section className="py-24 md:py-32 bg-bg-secondary/30">
+    <section className="py-14 md:py-28">
       <div className="container-premium">
         <SectionHeading
           eyebrow="Preguntas frecuentes"

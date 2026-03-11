@@ -79,8 +79,8 @@ export default function ServicioPremiumPage() {
                 },
               ].map((item, i) => (
                 <ScrollReveal key={i} delay={i * 0.08}>
-                  <div className="flex gap-4 items-start p-6 rounded-lg border border-border bg-bg-secondary/30 hover:border-accent/20 transition-colors">
-                    <span className="mt-1 text-accent text-lg shrink-0">
+                  <div className="flex gap-4 items-start p-6 rounded-lg border border-border bg-bg-secondary/30 hover:border-accent/20 hover:bg-bg-secondary/50 transition-all duration-300 group">
+                    <span className="mt-1 text-accent text-lg shrink-0 group-hover:scale-110 transition-transform">
                       ✦
                     </span>
                     <div>

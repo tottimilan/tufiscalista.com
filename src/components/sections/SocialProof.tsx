@@ -6,7 +6,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export function SocialProof() {
   return (
-    <section className="py-24 md:py-32 bg-bg-secondary/30">
+    <section className="py-14 md:py-28">
       <div className="container-premium">
         <SectionHeading
           eyebrow="Resultados reales"
@@ -14,14 +14,14 @@ export function SocialProof() {
           subtitle="No es branding. Son resultados medibles."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 max-w-5xl mx-auto">
           {TESTIMONIALS.map((t, i) => (
             <ScrollReveal key={i} delay={i * 0.1}>
-              <div className="rounded-lg border border-border bg-bg-secondary/80 p-8 h-full flex flex-col">
-                <p className="font-serif text-2xl font-bold text-accent mb-4">
+              <div className="rounded-lg border border-border bg-bg-secondary/50 p-6 md:p-8 h-full flex flex-col hover:border-accent/20 hover:bg-bg-secondary/70 transition-all duration-300">
+                <p className="font-serif text-xl md:text-2xl font-bold text-accent mb-3 md:mb-4">
                   {t.result}
                 </p>
-                <blockquote className="text-text-secondary leading-relaxed flex-1 mb-6">
+                <blockquote className="text-text-secondary text-sm md:text-base leading-relaxed flex-1 mb-5 md:mb-6">
                   &ldquo;{t.quote}&rdquo;
                 </blockquote>
                 <div className="pt-4 border-t border-border">

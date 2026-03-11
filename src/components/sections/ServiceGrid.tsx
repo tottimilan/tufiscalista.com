@@ -34,7 +34,7 @@ const iconMap: Record<string, React.ReactNode> = {
 
 export function ServiceGrid() {
   return (
-    <section className="py-24 md:py-32 bg-bg-secondary/30">
+    <section className="py-14 md:py-28">
       <div className="container-premium">
         <SectionHeading
           eyebrow="Servicio integral"
@@ -42,7 +42,7 @@ export function ServiceGrid() {
           subtitle="Nuestro plan premium cubre todas las áreas que tu negocio necesita. Sin sorpresas, sin extras."
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5">
           {SERVICES.map((service, i) => (
             <ScrollReveal key={service.title} delay={i * 0.05}>
               <Card hover className="h-full">

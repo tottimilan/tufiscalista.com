@@ -6,7 +6,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export function Comparison() {
   return (
-    <section className="py-24 md:py-32">
+    <section className="py-14 md:py-28 bg-bg-secondary/40">
       <div className="container-premium">
         <SectionHeading
           eyebrow="La diferencia"
@@ -20,7 +20,7 @@ export function Comparison() {
             <div className="rounded-xl border border-border overflow-hidden">
               <table className="w-full border-collapse">
                 <thead>
-                  <tr className="bg-bg-secondary/50">
+                  <tr className="bg-bg-primary/60">
                     <th className="text-left py-4 px-6 text-text-muted text-xs tracking-widest uppercase font-medium" />
                     <th className="text-left py-4 px-6 text-accent text-xs tracking-widest uppercase font-medium">
                       Tu Fiscalista
@@ -34,7 +34,7 @@ export function Comparison() {
                   {COMPARISON.map((row, i) => (
                     <tr
                       key={i}
-                      className="border-t border-border/50 hover:bg-bg-secondary/20 transition-colors"
+                      className="border-t border-border/50 hover:bg-bg-primary/40 transition-colors"
                     >
                       <td className="py-4 px-6 text-sm text-text-secondary font-medium">
                         {row.variable}
@@ -57,14 +57,14 @@ export function Comparison() {
         </ScrollReveal>
 
         {/* Mobile cards */}
-        <div className="md:hidden space-y-4 max-w-sm mx-auto">
+        <div className="md:hidden space-y-3 max-w-sm mx-auto">
           {COMPARISON.map((row, i) => (
             <ScrollReveal key={i} delay={i * 0.05}>
-              <div className="rounded-lg border border-border bg-bg-secondary/30 p-5">
-                <p className="text-xs font-medium tracking-widest uppercase text-text-muted mb-3">
+              <div className="rounded-lg border border-border bg-bg-primary/60 p-4 hover:border-accent/20 transition-colors">
+                <p className="text-xs font-medium tracking-widest uppercase text-text-muted mb-2.5">
                   {row.variable}
                 </p>
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <div className="flex items-start gap-2">
                     <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
                     <div>

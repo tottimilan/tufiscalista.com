@@ -6,7 +6,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export function Problems() {
   return (
-    <section className="py-24 md:py-32">
+    <section className="py-14 md:py-28 bg-bg-secondary/40">
       <div className="container-premium">
         <SectionHeading
           eyebrow="Tu situación actual"
@@ -14,11 +14,11 @@ export function Problems() {
           subtitle="Si te identificas con más de uno, probablemente necesitas un cambio de modelo."
         />
 
-        <div className="max-w-3xl mx-auto space-y-6">
+        <div className="max-w-3xl mx-auto space-y-4 md:space-y-6">
           {PROBLEMS.map((item, i) => (
             <ScrollReveal key={i} delay={i * 0.08}>
-              <div className="rounded-lg border border-border bg-bg-secondary/50 p-6 md:p-8 group hover:border-accent/30 transition-colors duration-300">
-                <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-8">
+              <div className="rounded-lg border border-border bg-bg-primary/60 p-5 md:p-8 group hover:border-accent/30 hover:bg-bg-primary/80 transition-all duration-300">
+                <div className="flex flex-col md:flex-row md:items-start gap-3 md:gap-8">
                   <div className="flex-1">
                     <div className="flex items-start gap-3">
                       <span className="mt-1 text-danger text-lg">✕</span>
@@ -30,7 +30,7 @@ export function Problems() {
                   <div className="w-px bg-border hidden md:block self-stretch" />
                   <div className="flex-1">
                     <div className="flex items-start gap-3">
-                      <span className="mt-1 text-accent text-lg">→</span>
+                      <span className="mt-1 text-accent text-lg group-hover:translate-x-1 transition-transform duration-300">→</span>
                       <p className="text-text-secondary leading-relaxed">
                         {item.solution}
                       </p>
