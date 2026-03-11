@@ -9,7 +9,7 @@ export const SITE = {
 
 export const PLAZAS = {
   total: 20,
-  ocupadas: 8,
+  ocupadas: 15,
 } as const;
 
 export const NAV_LINKS = [
