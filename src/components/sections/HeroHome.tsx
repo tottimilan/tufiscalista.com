@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Counter } from "@/components/ui/Counter";
 import { HeroBackground } from "@/components/three/HeroBackground";
+import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
 
 export function HeroHome() {
   return (
@@ -80,7 +81,8 @@ export function HeroHome() {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-bg-primary to-transparent" />
+      <ScrollIndicator />
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-bg-primary to-transparent pointer-events-none" />
     </section>
   );
 }
