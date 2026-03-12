@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,6 +15,12 @@ type FormData = z.infer<typeof schema>;
 
 export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const honeypotRef = useRef<HTMLInputElement>(null);
+  const mountTime = useRef(Date.now());
+
+  useEffect(() => {
+    mountTime.current = Date.now();
+  }, []);
 
   const {
     register,
@@ -26,13 +32,19 @@ export function ContactForm() {
   });
 
   async function onSubmit(data: FormData) {
+    if (honeypotRef.current?.value) return;
+
     setStatus("loading");
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, _t: mountTime.current }),
       });
+      if (res.status === 429) {
+        setStatus("error");
+        return;
+      }
       if (!res.ok) throw new Error();
       setStatus("success");
       reset();
@@ -56,6 +68,18 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+      <div className="absolute opacity-0 h-0 w-0 overflow-hidden" aria-hidden="true">
+        <label htmlFor="website">Website</label>
+        <input
+          ref={honeypotRef}
+          id="website"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       <div>
         <label htmlFor="contact-nombre" className="block text-sm font-medium text-text-secondary mb-1.5">
           Nombre

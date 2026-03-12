@@ -178,24 +178,38 @@ export const FAQ_ITEMS = [
 
 export const TESTIMONIALS = [
   {
-    name: "Carlos M.",
-    role: "CEO, Startup tecnológica",
+    name: "Mohammed Makhi",
+    role: "CEO, Palatino",
     quote:
-      "Pasé de una gestoría de 300 clientes a Tu Fiscalista. La diferencia es abismal. Ahora tengo un asesor que conoce mi negocio y me avisa antes de que surjan problemas.",
-    result: "Ahorro fiscal del 23% el primer año",
+      "Ali destaca por su gran profesionalidad, cercanía y excelente atención. Su labor en asesoría y gestoría fiscal transmite confianza y hace que todo el proceso resulte mucho más claro, fácil y tranquilo.",
+    result: "Servicio altamente recomendable",
   },
   {
-    name: "Laura S.",
-    role: "Autónoma, Consultora de marketing",
+    name: "Manuel Ramos",
+    role: "Consultor de Marketing",
     quote:
-      "Por primera vez siento que tengo un partner fiscal, no alguien que solo presenta modelos. Las reuniones trimestrales me dan una tranquilidad que no tenía.",
-    result: "De 3 sanciones al año a cero en 18 meses",
+      "Siempre nos informa con antelación de cuánto vamos a tener que pagar de impuestos. Lleva todo con tiempo, avisa antes de cada trimestre y explica las cosas de forma clara. Todo resulta mucho más sencillo y sin sorpresas.",
+    result: "Sin sorpresas cada trimestre",
   },
   {
-    name: "Javier R.",
-    role: "Director, Agencia de diseño",
+    name: "Vera Khezina",
+    role: "Emprendedora Digital",
     quote:
-      "El cambio fue inmediato. Nos ayudaron con todo el traspaso, optimizaron nuestra estructura fiscal y ahora tomamos decisiones con datos reales.",
-    result: "Recuperación de 8.400€ en deducciones no aplicadas",
+      "Me da mucha tranquilidad trabajar con Ali, es profesional, inteligente y habla ese idioma tan raro que solo entienden los economistas y los señores de Hacienda. Si te estás planteando trabajar con él, no lo dudes ni un segundo.",
+    result: "Tranquilidad total con Hacienda",
+  },
+  {
+    name: "Tamta Martashvili",
+    role: "No Residente Fiscal",
+    quote:
+      "Aunque yo me encontraba en otro país, me acompañó y me ayudó en todo momento a distancia con mucha responsabilidad y profesionalidad. Gracias a su apoyo, todo el proceso fue mucho más fácil para mí.",
+    result: "Gestión completa a distancia",
+  },
+  {
+    name: "Ayub Baach",
+    role: "CEO, AutosMobax",
+    quote:
+      "Desde que empecé a trabajar con él he notado un salto cualitativo en la gestión fiscal, demostrando siempre un gran nivel de profesionalidad y conocimiento. Ofrece un trato cercano y personalizado, adaptándose a las necesidades de cada situación.",
+    result: "Salto cualitativo en gestión fiscal",
   },
 ] as const;

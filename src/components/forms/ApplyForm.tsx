@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -58,6 +58,12 @@ const inputClasses =
 export function ApplyForm() {
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
+  const honeypotRef = useRef<HTMLInputElement>(null);
+  const mountTime = useRef(Date.now());
+
+  useEffect(() => {
+    mountTime.current = Date.now();
+  }, []);
 
   const {
     register,
@@ -68,15 +74,21 @@ export function ApplyForm() {
   });
 
   async function onSubmit(data: FormData) {
+    if (honeypotRef.current?.value) return;
+
     setSending(true);
     trackEvent("submit_apply_form");
 
     try {
-      await fetch("/api/apply", {
+      const res = await fetch("/api/apply", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, _t: mountTime.current }),
       });
+      if (res.status === 429) {
+        alert("Demasiadas solicitudes. Espera un momento.");
+        return;
+      }
       setSubmitted(true);
     } catch {
       alert("Error al enviar. Inténtalo de nuevo.");
@@ -124,6 +136,18 @@ export function ApplyForm() {
           onFocus={() => trackEvent("start_apply_form")}
           className="space-y-5"
         >
+          <div className="absolute opacity-0 h-0 w-0 overflow-hidden" aria-hidden="true">
+            <label htmlFor="apply-website">Website</label>
+            <input
+              ref={honeypotRef}
+              id="apply-website"
+              name="website"
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+            />
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <FormInput label="Nombre completo" error={errors.nombre?.message}>
               <input

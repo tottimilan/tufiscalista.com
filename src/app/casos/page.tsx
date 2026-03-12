@@ -7,54 +7,89 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 export const metadata: Metadata = {
   title: "Casos de éxito",
   description:
-    "Resultados reales de clientes que han pasado de una gestoría tradicional a Tu Fiscalista.",
+    "Resultados reales de clientes que confían en Tu Fiscalista para su gestión fiscal.",
 };
 
 const caseStudies = [
   {
-    sector: "Startup tecnológica",
+    sector: "Hostelería y restauración",
     challenge:
-      "Llevaba 3 años con una gestoría de volumen que solo presentaba modelos. Pagaba de más por falta de planificación y acumulaba riesgos fiscales.",
+      "Negocio con múltiples obligaciones fiscales y necesidad de un asesor que transmitiera confianza y claridad en cada paso del proceso.",
     solution:
-      "Diagnóstico completo, reestructuración fiscal de autónomo a SL, optimización de deducciones y plan de previsión trimestral.",
+      "Asesoría fiscal integral con comunicación directa, explicación clara de cada obligación y gestión proactiva de todos los trámites.",
     results: [
-      "Ahorro fiscal del 23% el primer año",
-      "0 sanciones desde el cambio",
-      "Previsión trimestral de impuestos",
+      "Proceso claro y sin complicaciones",
+      "Confianza total en la gestión",
+      "Atención cercana y profesional",
     ],
     quote:
-      "La diferencia es abismal. Ahora tengo un asesor que conoce mi negocio y me avisa antes de que surjan problemas.",
-    name: "Carlos M.",
+      "Ali destaca por su gran profesionalidad, cercanía y excelente atención. Su labor en asesoría y gestoría fiscal transmite confianza y hace que todo el proceso resulte mucho más claro, fácil y tranquilo.",
+    name: "Mohammed Makhi",
+    role: "CEO, Palatino",
   },
   {
-    sector: "Consultora de marketing",
+    sector: "Consultoría de marketing",
     challenge:
-      "3 sanciones al año por errores de su gestoría anterior. No tenía visibilidad sobre sus impuestos ni planificación.",
+      "Venía de tener problemas con una empresa anterior. Necesitaba un asesor que se implicara de verdad, controlara cada detalle y anticipara los pagos de impuestos.",
     solution:
-      "Auditoría fiscal inicial, corrección de errores acumulados, implementación de previsiones y reuniones trimestrales.",
+      "Revisión completa del historial fiscal, gestión de incidencias heredadas, previsión trimestral de impuestos y acompañamiento en todas las gestiones con Hacienda y Seguridad Social.",
     results: [
-      "De 3 sanciones/año a 0 en 18 meses",
-      "Previsión clara cada trimestre",
-      "Reuniones periódicas de seguimiento",
+      "Previsión anticipada de impuestos",
+      "Gestión de problemas heredados",
+      "Sin sorpresas cada trimestre",
     ],
     quote:
-      "Por primera vez siento que tengo un partner fiscal, no alguien que solo presenta modelos.",
-    name: "Laura S.",
+      "Siempre nos informa con antelación de cuánto vamos a tener que pagar de impuestos. Lleva todo con tiempo, avisa antes de cada trimestre y explica las cosas de forma clara.",
+    name: "Manuel Ramos",
+    role: "Consultor de Marketing",
   },
   {
-    sector: "Agencia de diseño",
+    sector: "Emprendimiento digital",
     challenge:
-      "Empresa con 8 empleados que necesitaba optimizar estructura fiscal y recuperar deducciones no aplicadas por su gestoría anterior.",
+      "Emprendedora digital que necesitaba un asesor fiscal que entendiera su modelo de negocio y simplificara la complejidad fiscal.",
     solution:
-      "Traspaso completo, revisión de 3 ejercicios anteriores, recuperación de deducciones y nueva estructura fiscal.",
+      "Asesoría adaptada al modelo digital, comunicación directa y explicaciones accesibles para decisiones fiscales complejas.",
     results: [
-      "Recuperación de 8.400€ en deducciones",
-      "Traspaso sin interrupciones",
-      "Estructura fiscal optimizada",
+      "Tranquilidad total con Hacienda",
+      "Explicaciones claras y accesibles",
+      "Decisiones con criterio fiscal",
     ],
     quote:
-      "Nos ayudaron con todo el traspaso, optimizaron nuestra estructura y ahora tomamos decisiones con datos reales.",
-    name: "Javier R.",
+      "Me da mucha tranquilidad trabajar con Ali, es profesional, inteligente y habla ese idioma tan raro que solo entienden los economistas y los señores de Hacienda.",
+    name: "Vera Khezina",
+    role: "Emprendedora Digital",
+  },
+  {
+    sector: "No residente fiscal",
+    challenge:
+      "Persona residente en otro país que necesitaba gestionar trámites fiscales en España a distancia, sin posibilidad de acudir presencialmente.",
+    solution:
+      "Gestión completa de trámites a distancia con comunicación constante, explicación de cada paso y resolución de toda la documentación necesaria.",
+    results: [
+      "Gestión 100% remota exitosa",
+      "Comunicación fluida a distancia",
+      "Todos los trámites resueltos",
+    ],
+    quote:
+      "Aunque yo me encontraba en otro país, me acompañó y me ayudó en todo momento a distancia con mucha responsabilidad y profesionalidad.",
+    name: "Tamta Martashvili",
+    role: "No Residente Fiscal",
+  },
+  {
+    sector: "Automoción",
+    challenge:
+      "Empresa que necesitaba un salto cualitativo en su gestión fiscal. Buscaba un asesor con conocimiento profundo y trato personalizado.",
+    solution:
+      "Asesoría integral con planificación fiscal adaptada, trato cercano y seguimiento continuo de todas las obligaciones.",
+    results: [
+      "Salto cualitativo en gestión fiscal",
+      "Trato cercano y personalizado",
+      "Experiencia totalmente positiva",
+    ],
+    quote:
+      "Desde que empecé a trabajar con él he notado un salto cualitativo en la gestión fiscal, demostrando siempre un gran nivel de profesionalidad y conocimiento.",
+    name: "Ayub Baach",
+    role: "CEO, AutosMobax",
   },
 ];
 
@@ -69,8 +104,8 @@ export default function CasosPage() {
             <span className="text-gradient-gold">Son resultados.</span>
           </h1>
           <p className="mt-6 text-text-secondary text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            Cada caso es real. Cada resultado, medible. Así trabaja una asesoría
-            que pone el criterio por delante del volumen.
+            Cada caso es real. Cada testimonio, auténtico. Así trabaja una
+            asesoría que pone el criterio por delante del volumen.
           </p>
         </div>
       </section>
@@ -87,7 +122,7 @@ export default function CasosPage() {
                     <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div>
                         <p className="text-xs font-medium tracking-widest uppercase text-text-muted mb-3">
-                          El problema
+                          El reto
                         </p>
                         <p className="text-text-secondary leading-relaxed">
                           {cs.challenge}
@@ -126,7 +161,7 @@ export default function CasosPage() {
                         &ldquo;{cs.quote}&rdquo;
                       </p>
                       <p className="mt-2 text-sm text-text-muted font-medium">
-                        — {cs.name}
+                        — {cs.name}, {cs.role}
                       </p>
                     </blockquote>
                   </div>
@@ -141,10 +176,10 @@ export default function CasosPage() {
         <div className="container-premium">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-serif text-3xl md:text-4xl font-semibold mb-4">
-              Más testimonios
+              Lo que dicen nuestros clientes
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-              {TESTIMONIALS.map((t, i) => (
+              {TESTIMONIALS.slice(0, 3).map((t, i) => (
                 <ScrollReveal key={i} delay={i * 0.1}>
                   <div className="rounded-lg border border-border bg-bg-secondary/80 p-6 h-full text-left">
                     <p className="font-serif text-lg font-bold text-accent mb-3">

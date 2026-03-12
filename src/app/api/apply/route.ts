@@ -1,11 +1,34 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import {
+  isRateLimited,
+  getClientIp,
+  isHoneypotFilled,
+  isTooFast,
+} from "@/lib/antispam";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
   try {
+    const ip = getClientIp(request);
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        { error: "Demasiadas solicitudes. Espera un momento." },
+        { status: 429 }
+      );
+    }
+
     const data = await request.json();
+
+    if (isHoneypotFilled(data)) {
+      return NextResponse.json({ success: true });
+    }
+
+    if (isTooFast(data._t)) {
+      return NextResponse.json({ success: true });
+    }
+
     const { nombre, email, telefono, tipo, facturacion, mensaje } = data;
 
     await resend.emails.send({

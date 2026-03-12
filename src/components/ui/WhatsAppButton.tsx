@@ -21,7 +21,7 @@ export function WhatsAppButton() {
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0, opacity: 0 }}
           transition={{ type: "spring", stiffness: 260, damping: 20 }}
-          href="https://wa.me/34600000000?text=Hola%2C%20me%20interesa%20el%20servicio%20de%20asesor%C3%ADa%20fiscal"
+          href="https://wa.me/34698249376?text=Hola%2C%20me%20interesa%20el%20servicio%20de%20asesor%C3%ADa%20fiscal"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Contactar por WhatsApp"
