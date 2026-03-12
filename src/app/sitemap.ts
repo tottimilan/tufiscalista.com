@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/constants";
+import { blogPosts } from "@/lib/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = SITE.url;
@@ -14,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/sobre-nosotros",
     "/contacto",
     "/faq",
+    "/blog",
   ];
 
   const bofuPages = [
@@ -28,6 +30,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const legalPages = ["/politica-privacidad", "/aviso-legal"];
 
+  const blogPages = blogPosts.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: new Date(post.date),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
   return [
     ...corePages.map((path) => ({
       url: `${baseUrl}${path}`,
@@ -41,6 +50,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
+    ...blogPages,
     ...legalPages.map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: new Date(),
