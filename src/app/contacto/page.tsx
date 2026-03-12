@@ -20,6 +20,13 @@ const contactMethods = [
     desc: "Para consultas generales o enviar documentación.",
   },
   {
+    title: "Agendar reunión",
+    value: "Reunión de 15 o 30 min",
+    href: "https://cal.com/el-asesor-fiscal/30min",
+    desc: "Elige un hueco en nuestra agenda y hablamos directamente.",
+    external: true,
+  },
+  {
     title: "Solicitar plaza",
     value: "Formulario de aplicación",
     href: "/aplicar",
@@ -51,6 +58,7 @@ export default function ContactoPage() {
                 <a
                   href={method.href}
                   className="block"
+                  {...("external" in method && method.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 >
                   <Card hover>
                     <div className="flex items-start justify-between gap-4">
