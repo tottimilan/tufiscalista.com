@@ -108,19 +108,20 @@ export function ExitIntent() {
             </p>
 
             <div className="flex flex-col gap-3">
-              <Button
+              <a
                 href="https://cal.com/el-asesor-fiscal/15min"
-                size="md"
-                className="w-full"
-                trackAs="click_cta_primary"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-md font-sans transition-all duration-300 cursor-pointer whitespace-nowrap bg-accent text-bg-primary hover:bg-accent-hover font-semibold shadow-lg shadow-accent/10 px-6 py-3 text-base w-full"
               >
                 Agendar llamada gratuita
-              </Button>
+              </a>
               <Button
                 href="/aplicar"
                 variant="outline"
                 size="md"
                 className="w-full"
+                onClick={() => setShow(false)}
               >
                 Solicitar plaza
               </Button>
