@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { FAQ_ITEMS } from "@/lib/constants";
+import { FAQ_ITEMS, SITE } from "@/lib/constants";
 import { Accordion } from "@/components/ui/Accordion";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
@@ -33,9 +33,35 @@ const extraFAQ = [
   },
 ];
 
+const allFAQ = [...FAQ_ITEMS, ...extraFAQ];
+
+function FAQSchema() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: allFAQ.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
 export default function FAQPage() {
   return (
     <>
+      <FAQSchema />
+
       <section className="pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="container-premium text-center">
           <Badge variant="gold">FAQ</Badge>

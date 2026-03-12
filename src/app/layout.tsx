@@ -5,6 +5,10 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Analytics } from "@/components/tracking/Analytics";
 import { ScrollTracker } from "@/components/tracking/ScrollTracker";
+import { CookieBanner } from "@/components/ui/CookieBanner";
+import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import { LoadingBar } from "@/components/ui/LoadingBar";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -33,6 +37,39 @@ export const metadata: Metadata = {
   },
 };
 
+function ProfessionalServiceSchema() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: SITE.name,
+    url: SITE.url,
+    description: SITE.description,
+    areaServed: {
+      "@type": "Country",
+      name: "España",
+    },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Madrid",
+      addressCountry: "ES",
+    },
+    priceRange: "€€€",
+    serviceType: [
+      "Asesoría fiscal",
+      "Contabilidad",
+      "Gestión laboral",
+      "Planificación fiscal",
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -40,12 +77,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${serif.variable} ${sans.variable}`}>
+      <head>
+        <ProfessionalServiceSchema />
+      </head>
       <body className="font-sans antialiased">
+        <LoadingBar />
         <Header />
         <main>{children}</main>
         <Footer />
+        <WhatsAppButton />
+        <CookieBanner />
         <Analytics />
         <ScrollTracker />
+        <SpeedInsights />
       </body>
     </html>
   );

@@ -53,6 +53,43 @@ export async function POST(request: Request) {
       `,
     });
 
+    await resend.emails.send({
+      from: "Tu Fiscalista <no-reply@tufiscalista.com>",
+      to: email,
+      subject: "Hemos recibido tu solicitud — Tu Fiscalista",
+      html: `
+        <div style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto; color: #F5F7FA;">
+          <div style="text-align: center; padding: 32px 0; border-bottom: 1px solid #253041;">
+            <h1 style="font-family: Georgia, serif; font-size: 28px; color: #C8A977; margin: 0;">
+              Tu Fiscalista
+            </h1>
+          </div>
+          <div style="padding: 32px 0;">
+            <p style="font-size: 18px; margin: 0 0 16px;">
+              Hola ${nombre},
+            </p>
+            <p style="margin: 0 0 16px; color: #A7B0BE; line-height: 1.6;">
+              Hemos recibido tu solicitud correctamente. Nuestro equipo revisará
+              tu caso y te contactaremos en un plazo máximo de <strong style="color: #F5F7FA;">48 horas laborables</strong>.
+            </p>
+            <p style="margin: 0 0 16px; color: #A7B0BE; line-height: 1.6;">
+              Si tienes cualquier duda urgente, puedes escribirnos directamente a
+              <a href="mailto:info@tufiscalista.com" style="color: #C8A977;">info@tufiscalista.com</a>.
+            </p>
+            <p style="margin: 24px 0 0; color: #A7B0BE;">
+              Un saludo,<br />
+              <strong style="color: #F5F7FA;">El equipo de Tu Fiscalista</strong>
+            </p>
+          </div>
+          <div style="border-top: 1px solid #253041; padding-top: 16px; text-align: center;">
+            <p style="margin: 0; font-size: 12px; color: #6B7A8D;">
+              tufiscalista.com · Asesoría fiscal boutique
+            </p>
+          </div>
+        </div>
+      `,
+    });
+
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Error sending email:", error);

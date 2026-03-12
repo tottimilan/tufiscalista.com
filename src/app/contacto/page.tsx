@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { ContactForm } from "@/components/forms/ContactForm";
 
 export const metadata: Metadata = {
   title: "Contacto",
@@ -70,6 +71,17 @@ export default function ContactoPage() {
                 </a>
               </ScrollReveal>
             ))}
+          </div>
+
+          <div className="max-w-2xl mx-auto mt-16">
+            <ScrollReveal delay={0.2}>
+              <div className="rounded-xl border border-border bg-bg-secondary/30 p-8">
+                <h2 className="font-serif text-2xl font-semibold text-text-primary mb-6">
+                  Envíanos un mensaje
+                </h2>
+                <ContactForm />
+              </div>
+            </ScrollReveal>
           </div>
 
           <div className="max-w-2xl mx-auto mt-12 text-center">

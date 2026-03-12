@@ -1,9 +1,21 @@
+"use client";
+
 import Script from "next/script";
+import { useEffect, useState } from "react";
+import { getCookieConsent } from "@/components/ui/CookieBanner";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
 
 export function Analytics() {
+  const [allowed, setAllowed] = useState(false);
+
+  useEffect(() => {
+    setAllowed(getCookieConsent() === "accepted");
+  }, []);
+
+  if (!allowed) return null;
+
   return (
     <>
       {GA_ID && (
