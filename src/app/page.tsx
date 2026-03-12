@@ -1,4 +1,5 @@
 import { HeroHome } from "@/components/sections/HeroHome";
+import { ClientLogos } from "@/components/sections/ClientLogos";
 import { ForWho } from "@/components/sections/ForWho";
 import { ServiceGrid } from "@/components/sections/ServiceGrid";
 import { Problems } from "@/components/sections/Problems";
@@ -12,6 +13,7 @@ export default function HomePage() {
   return (
     <>
       <HeroHome />
+      <ClientLogos />
       <ForWho />
       <ServiceGrid />
       <Problems />

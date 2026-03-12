@@ -27,21 +27,31 @@ export function ApplySection() {
               <Counter />
             </div>
 
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Button
-                href="/aplicar"
-                size="lg"
-                trackAs="click_cta_primary"
+            <div className="mt-8 flex flex-col items-center gap-4">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                <Button
+                  href="/aplicar"
+                  size="lg"
+                  trackAs="click_cta_primary"
+                >
+                  Solicitar diagnóstico gratuito
+                </Button>
+                <Button
+                  href="/precio"
+                  variant="outline"
+                  size="lg"
+                >
+                  Ver qué incluye
+                </Button>
+              </div>
+              <a
+                href="https://cal.com/el-asesor-fiscal/15min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-text-muted hover:text-accent transition-colors duration-300 underline underline-offset-4 decoration-border hover:decoration-accent"
               >
-                Solicitar diagnóstico gratuito
-              </Button>
-              <Button
-                href="/precio"
-                variant="outline"
-                size="lg"
-              >
-                Ver qué incluye
-              </Button>
+                ¿Prefieres hablar primero? Agenda una llamada →
+              </a>
             </div>
           </div>
         </ScrollReveal>

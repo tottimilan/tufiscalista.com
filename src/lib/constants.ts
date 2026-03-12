@@ -17,6 +17,7 @@ export const NAV_LINKS = [
   { href: "/como-trabajamos", label: "Método" },
   { href: "/precio", label: "Precio" },
   { href: "/casos", label: "Casos" },
+  { href: "/calculadora", label: "Calculadora" },
   { href: "/sobre-nosotros", label: "Nosotros" },
   { href: "/blog", label: "Blog" },
 ] as const;
@@ -174,6 +175,20 @@ export const FAQ_ITEMS = [
     answer:
       "Sí, con ambos. Nuestro modelo boutique se adapta tanto a autónomos con cierto volumen como a pequeñas empresas que valoran un servicio cercano y estratégico.",
   },
+] as const;
+
+export const FEATURE_FLAGS = {
+  showClientLogos: false,
+  showVideo: false,
+} as const;
+
+export const CLIENT_LOGOS = [
+  { name: "Cliente 1", src: "/logos/client-1.svg" },
+  { name: "Cliente 2", src: "/logos/client-2.svg" },
+  { name: "Cliente 3", src: "/logos/client-3.svg" },
+  { name: "Cliente 4", src: "/logos/client-4.svg" },
+  { name: "Cliente 5", src: "/logos/client-5.svg" },
+  { name: "Cliente 6", src: "/logos/client-6.svg" },
 ] as const;
 
 export const TESTIMONIALS = [

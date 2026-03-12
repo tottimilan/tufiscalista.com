@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { blogPosts, getPostBySlug, getAllSlugs, formatDate } from "@/lib/blog";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import { BlogCTA } from "@/components/ui/BlogCTA";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SITE } from "@/lib/constants";
 
@@ -59,6 +60,42 @@ function ArticleSchema({ post }: { post: NonNullable<ReturnType<typeof getPostBy
   );
 }
 
+function ArticleContent({ content }: { content: string }) {
+  const headingPattern = /<h2[^>]*>/g;
+  const matches = [...content.matchAll(headingPattern)];
+
+  if (matches.length >= 3) {
+    const midIdx = Math.floor(matches.length / 2);
+    const splitPos = matches[midIdx].index!;
+    const firstHalf = content.slice(0, splitPos);
+    const secondHalf = content.slice(splitPos);
+
+    return (
+      <>
+        <div
+          className="prose-custom"
+          dangerouslySetInnerHTML={{ __html: firstHalf }}
+        />
+        <BlogCTA />
+        <div
+          className="prose-custom"
+          dangerouslySetInnerHTML={{ __html: secondHalf }}
+        />
+      </>
+    );
+  }
+
+  return (
+    <>
+      <div
+        className="prose-custom"
+        dangerouslySetInnerHTML={{ __html: content }}
+      />
+      <BlogCTA />
+    </>
+  );
+}
+
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
@@ -94,10 +131,7 @@ export default async function BlogPostPage({ params }: Props) {
 
         <div className="pb-16 md:pb-24">
           <div className="container-premium max-w-3xl mx-auto">
-            <div
-              className="prose-custom"
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            />
+            <ArticleContent content={post.content} />
           </div>
         </div>
       </article>

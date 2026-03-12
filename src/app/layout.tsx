@@ -7,6 +7,7 @@ import { Analytics } from "@/components/tracking/Analytics";
 import { ScrollTracker } from "@/components/tracking/ScrollTracker";
 import { CookieBanner } from "@/components/ui/CookieBanner";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import { ExitIntent } from "@/components/ui/ExitIntent";
 import { LoadingBar } from "@/components/ui/LoadingBar";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
@@ -86,6 +87,7 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
         <WhatsAppButton />
+        <ExitIntent />
         <CookieBanner />
         <Analytics />
         <ScrollTracker />

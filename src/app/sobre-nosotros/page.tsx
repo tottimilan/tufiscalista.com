@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { SITE, PLAZAS } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { VideoIntro } from "@/components/sections/VideoIntro";
 
 export const metadata: Metadata = {
   title: "Sobre nosotros",
@@ -55,12 +57,20 @@ export default function SobreNosotrosPage() {
         <div className="container-premium">
           <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <ScrollReveal direction="left">
-              <div className="rounded-xl border border-border bg-bg-secondary/80 p-10 aspect-square flex items-center justify-center">
-                <div className="text-center">
-                  <p className="font-serif text-5xl font-bold text-accent">
+              <div className="rounded-xl border border-border bg-bg-secondary/80 overflow-hidden aspect-square relative">
+                <Image
+                  src="/ali.jpg"
+                  alt={`${SITE.advisor} — Fundador de ${SITE.name}`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 400px"
+                  priority
+                />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-bg-primary/90 to-transparent p-6">
+                  <p className="font-serif text-2xl font-bold text-text-primary">
                     {SITE.advisor}
                   </p>
-                  <p className="mt-2 text-text-secondary text-sm">
+                  <p className="text-text-secondary text-sm">
                     Fundador &amp; Asesor Fiscal
                   </p>
                 </div>
@@ -94,6 +104,8 @@ export default function SobreNosotrosPage() {
           </div>
         </div>
       </section>
+
+      <VideoIntro />
 
       <section className="py-20 md:py-28">
         <div className="container-premium">

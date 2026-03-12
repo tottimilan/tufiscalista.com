@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/contacto",
     "/faq",
     "/blog",
+    "/calculadora",
   ];
 
   const bofuPages = [

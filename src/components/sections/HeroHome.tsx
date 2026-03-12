@@ -51,23 +51,33 @@ export function HeroHome() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3"
+            className="mt-8 flex flex-col items-center gap-4"
           >
-            <Button
-              href="/aplicar"
-              size="lg"
-              trackAs="click_cta_primary"
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Button
+                href="/aplicar"
+                size="lg"
+                trackAs="click_cta_primary"
+              >
+                Aplicar a una plaza
+              </Button>
+              <Button
+                href="/como-trabajamos"
+                variant="secondary"
+                size="lg"
+                trackAs="click_cta_secondary"
+              >
+                Ver cómo trabajamos
+              </Button>
+            </div>
+            <a
+              href="https://cal.com/el-asesor-fiscal/15min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-text-muted hover:text-accent transition-colors duration-300 underline underline-offset-4 decoration-border hover:decoration-accent"
             >
-              Aplicar a una plaza
-            </Button>
-            <Button
-              href="/como-trabajamos"
-              variant="secondary"
-              size="lg"
-              trackAs="click_cta_secondary"
-            >
-              Ver cómo trabajamos
-            </Button>
+              O agenda una llamada de 15 min →
+            </a>
           </motion.div>
 
           <motion.div

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { NAV_LINKS, SITE } from "@/lib/constants";
+import { NAV_LINKS, SITE, PLAZAS } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
@@ -50,7 +50,24 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center gap-3">
+            <AnimatePresence>
+              {scrolled && (
+                <motion.span
+                  initial={{ opacity: 0, scale: 0.8, x: 10 }}
+                  animate={{ opacity: 1, scale: 1, x: 0 }}
+                  exit={{ opacity: 0, scale: 0.8, x: 10 }}
+                  className={cn(
+                    "text-xs font-medium px-2.5 py-1 rounded-full border",
+                    PLAZAS.total - PLAZAS.ocupadas <= 3
+                      ? "text-danger border-danger/30 bg-danger/10"
+                      : "text-accent border-accent/30 bg-accent-muted"
+                  )}
+                >
+                  {PLAZAS.total - PLAZAS.ocupadas} plazas
+                </motion.span>
+              )}
+            </AnimatePresence>
             <Button href="/aplicar" size="sm" trackAs="click_cta_primary">
               Aplicar a una plaza
             </Button>
