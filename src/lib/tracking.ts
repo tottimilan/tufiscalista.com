@@ -8,7 +8,9 @@ type EventName =
   | "download_lead_magnet"
   | "scroll_50"
   | "scroll_90"
-  | "compare_table_interaction";
+  | "compare_table_interaction"
+  | "calculator_used"
+  | "exit_intent_shown";
 
 export function trackEvent(
   event: EventName,

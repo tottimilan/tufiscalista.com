@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Counter } from "@/components/ui/Counter";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { trackEvent } from "@/lib/tracking";
 
 export function ApplySection() {
   return (
@@ -49,6 +50,7 @@ export function ApplySection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-text-muted hover:text-accent transition-colors duration-300 underline underline-offset-4 decoration-border hover:decoration-accent"
+                onClick={() => trackEvent("book_call", { source: "apply_section" })}
               >
                 ¿Prefieres hablar primero? Agenda una llamada →
               </a>

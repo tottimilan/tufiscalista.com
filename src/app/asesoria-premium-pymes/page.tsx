@@ -68,9 +68,9 @@ const data = {
         "Sí. Nos coordinamos con tu asesoría actual para la cesión de documentación y el traspaso de obligaciones. Planificamos el cambio para que no se pierda ningún plazo ni información relevante.",
     },
     {
-      question: "¿Incluye contabilidad y nóminas?",
+      question: "¿Incluye contabilidad?",
       answer:
-        "Depende de la propuesta. Podemos ofrecer un servicio integral (fiscal, contable, laboral) o centrarnos en la parte fiscal estratégica si ya tienes contabilidad cubierta. Lo definimos en el diagnóstico.",
+        "Depende de la propuesta. Podemos ofrecer un servicio integral (fiscal y contable) o centrarnos en la parte fiscal estratégica si ya tienes contabilidad cubierta. Lo definimos en el diagnóstico.",
     },
     {
       question: "¿Cómo se factura el servicio?",

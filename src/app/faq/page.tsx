@@ -27,9 +27,9 @@ const extraFAQ = [
       "Nos encargamos de todo. Monitorizamos tus notificaciones electrónicas, respondemos a requerimientos y te informamos de cada paso.",
   },
   {
-    question: "¿Ofrecéis servicio para sociedades con empleados?",
+    question: "¿Trabajáis con extranjeros o no residentes?",
     answer:
-      "Sí. Cubrimos la gestión laboral completa: nóminas, contratos, altas, bajas y todo lo relacionado con personal.",
+      "Sí. Ofrecemos asesoramiento fiscal integral a extranjeros y no residentes, incluyendo la gestión de obtención de residencia fiscal en España.",
   },
 ];
 

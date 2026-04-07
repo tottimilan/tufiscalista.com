@@ -58,7 +58,7 @@ function ProfessionalServiceSchema() {
     serviceType: [
       "Asesoría fiscal",
       "Contabilidad",
-      "Gestión laboral",
+      "Fiscalidad para extranjeros",
       "Planificación fiscal",
     ],
   };

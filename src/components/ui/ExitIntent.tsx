@@ -21,7 +21,7 @@ export function ExitIntent() {
 
     sessionStorage.setItem(SESSION_KEY, "1");
     setShow(true);
-    trackEvent("exit_intent_shown" as never);
+    trackEvent("exit_intent_shown");
   }, []);
 
   useEffect(() => {

@@ -36,10 +36,10 @@ export const SERVICES = [
     icon: "book",
   },
   {
-    title: "Laboral",
+    title: "Fiscalidad para extranjeros",
     description:
-      "Nóminas, contratos, altas, bajas y toda la gestión de personal que necesites.",
-    icon: "users",
+      "Asesoramiento fiscal integral a no residentes y extranjeros, incluyendo gestión de obtención de residencia fiscal en España.",
+    icon: "globe",
   },
   {
     title: "Legal",
@@ -143,12 +143,12 @@ export const FAQ_ITEMS = [
   {
     question: "¿Qué incluye exactamente el servicio premium?",
     answer:
-      "Fiscalidad completa, contabilidad, laboral, asesoramiento legal básico, reuniones de seguimiento, previsión de impuestos, soporte directo y gestión documental digital. Todo lo que necesitas, con un solo interlocutor.",
+      "Fiscalidad completa, contabilidad, asesoramiento fiscal para extranjeros y residencia, asesoramiento legal básico, reuniones de seguimiento, previsión de impuestos, soporte directo y gestión documental digital. Todo lo que necesitas, con un solo interlocutor.",
   },
   {
     question: "¿Qué no incluye?",
     answer:
-      "No incluimos servicios jurídicos complejos (litigios, procesos judiciales) ni auditorías externas. Si lo necesitas, te derivamos a profesionales de confianza.",
+      "No incluimos servicios jurídicos complejos (litigios, procesos judiciales), auditorías externas ni gestión laboral (nóminas, contratos). Las inspecciones de Hacienda tampoco están incluidas en la cuota base, pero las gestionamos como servicio aparte con presupuesto cerrado. Si necesitas cualquiera de estos servicios, te asesoramos o te derivamos a profesionales de confianza.",
   },
   {
     question: "¿Hay permanencia?",

@@ -9,7 +9,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 export const metadata: Metadata = {
   title: "Servicio Premium",
   description:
-    "Asesoría fiscal integral para autónomos y pymes. Fiscalidad, contabilidad, laboral, legal y seguimiento estratégico.",
+    "Asesoría fiscal integral para autónomos y pymes. Fiscalidad, contabilidad, asesoramiento a extranjeros, legal y seguimiento estratégico.",
 };
 
 export default function ServicioPremiumPage() {
@@ -23,7 +23,7 @@ export default function ServicioPremiumPage() {
             <span className="text-gradient-gold">Un solo interlocutor.</span>
           </h1>
           <p className="mt-6 text-text-secondary text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            Nuestro plan premium cubre fiscalidad, contabilidad, laboral, legal
+            Nuestro plan premium cubre fiscalidad, contabilidad, extranjeros, legal
             y seguimiento estratégico. Sin sorpresas, sin extras ocultos.
           </p>
         </div>

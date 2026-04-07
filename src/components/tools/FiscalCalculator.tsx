@@ -104,7 +104,7 @@ export function FiscalCalculator() {
   function handleCalculate() {
     if (!canCalculate) return;
     setShowResults(true);
-    trackEvent("calculator_used" as never);
+    trackEvent("calculator_used");
   }
 
   function handleReset() {

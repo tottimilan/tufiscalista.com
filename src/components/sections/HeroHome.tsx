@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { Counter } from "@/components/ui/Counter";
 import { HeroBackground } from "@/components/three/HeroBackground";
 import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
+import { trackEvent } from "@/lib/tracking";
 
 export function HeroHome() {
   return (
@@ -75,6 +76,7 @@ export function HeroHome() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-text-muted hover:text-accent transition-colors duration-300 underline underline-offset-4 decoration-border hover:decoration-accent"
+              onClick={() => trackEvent("book_call", { source: "hero" })}
             >
               O agenda una llamada de 15 min →
             </a>
