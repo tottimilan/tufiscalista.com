@@ -112,6 +112,7 @@ export function ExitIntent() {
                 href="https://cal.com/el-asesor-fiscal/15min"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackEvent("book_call", { source: "exit_intent" })}
                 className="inline-flex items-center justify-center gap-2 rounded-md font-sans transition-all duration-300 cursor-pointer whitespace-nowrap bg-accent text-bg-primary hover:bg-accent-hover font-semibold shadow-lg shadow-accent/10 px-6 py-3 text-base w-full"
               >
                 Agendar llamada gratuita

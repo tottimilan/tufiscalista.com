@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { trackEvent } from "@/lib/tracking";
 
 export function WhatsAppButton() {
   const [visible, setVisible] = useState(false);
@@ -25,6 +26,7 @@ export function WhatsAppButton() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Contactar por WhatsApp"
+          onClick={() => trackEvent("click_whatsapp", { source: "floating_button" })}
           className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-[#25D366]/30 transition-transform hover:scale-110"
         >
           <svg

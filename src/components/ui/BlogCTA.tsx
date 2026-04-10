@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/Button";
+import { TrackedCalLink } from "@/components/ui/TrackedCalLink";
 import { PLAZAS } from "@/lib/constants";
 
 export function BlogCTA() {
@@ -20,14 +21,13 @@ export function BlogCTA() {
         <Button href="/aplicar" size="sm" trackAs="click_cta_primary">
           Solicitar diagnóstico gratuito
         </Button>
-        <a
+        <TrackedCalLink
           href="https://cal.com/el-asesor-fiscal/15min"
-          target="_blank"
-          rel="noopener noreferrer"
+          source="blog_cta"
           className="text-sm text-text-muted hover:text-accent transition-colors underline underline-offset-4 decoration-border hover:decoration-accent"
         >
           Agendar llamada →
-        </a>
+        </TrackedCalLink>
       </div>
     </aside>
   );

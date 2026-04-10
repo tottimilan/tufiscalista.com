@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { ContactForm } from "@/components/forms/ContactForm";
+import { TrackedCalLink } from "@/components/ui/TrackedCalLink";
 
 export const metadata: Metadata = {
   title: "Contacto",
@@ -55,28 +56,49 @@ export default function ContactoPage() {
           <div className="max-w-2xl mx-auto space-y-6">
             {contactMethods.map((method, i) => (
               <ScrollReveal key={i} delay={i * 0.1}>
-                <a
-                  href={method.href}
-                  className="block"
-                  {...("external" in method && method.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                >
-                  <Card hover>
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <p className="text-xs font-medium tracking-widest uppercase text-text-muted mb-2">
-                          {method.title}
-                        </p>
-                        <p className="font-serif text-xl font-semibold text-accent mb-1">
-                          {method.value}
-                        </p>
-                        <p className="text-sm text-text-secondary">
-                          {method.desc}
-                        </p>
+                {"external" in method && method.external ? (
+                  <TrackedCalLink
+                    href={method.href}
+                    source="contacto_page"
+                    className="block"
+                  >
+                    <Card hover>
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <p className="text-xs font-medium tracking-widest uppercase text-text-muted mb-2">
+                            {method.title}
+                          </p>
+                          <p className="font-serif text-xl font-semibold text-accent mb-1">
+                            {method.value}
+                          </p>
+                          <p className="text-sm text-text-secondary">
+                            {method.desc}
+                          </p>
+                        </div>
+                        <span className="text-accent text-xl mt-2">→</span>
                       </div>
-                      <span className="text-accent text-xl mt-2">→</span>
-                    </div>
-                  </Card>
-                </a>
+                    </Card>
+                  </TrackedCalLink>
+                ) : (
+                  <a href={method.href} className="block">
+                    <Card hover>
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <p className="text-xs font-medium tracking-widest uppercase text-text-muted mb-2">
+                            {method.title}
+                          </p>
+                          <p className="font-serif text-xl font-semibold text-accent mb-1">
+                            {method.value}
+                          </p>
+                          <p className="text-sm text-text-secondary">
+                            {method.desc}
+                          </p>
+                        </div>
+                        <span className="text-accent text-xl mt-2">→</span>
+                      </div>
+                    </Card>
+                  </a>
+                )}
               </ScrollReveal>
             ))}
           </div>

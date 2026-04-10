@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Accordion } from "@/components/ui/Accordion";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { trackEvent } from "@/lib/tracking";
 import { TESTIMONIALS } from "@/lib/constants";
 
 interface LandingData {
@@ -29,13 +30,24 @@ export function LandingTemplate({ data }: { data: LandingData }) {
           <p className="mt-5 text-text-secondary text-base md:text-xl max-w-2xl mx-auto leading-relaxed">
             {data.subtitle}
           </p>
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Button href="/aplicar" size="lg" trackAs="click_cta_primary">
-              Solicitar diagnóstico gratuito
-            </Button>
-            <Button href="/como-trabajamos" variant="secondary" size="lg">
-              Ver cómo trabajamos
-            </Button>
+          <div className="mt-8 flex flex-col items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Button href="/aplicar" size="lg" trackAs="click_cta_primary">
+                Solicitar diagnóstico gratuito
+              </Button>
+              <Button href="/como-trabajamos" variant="secondary" size="lg">
+                Ver cómo trabajamos
+              </Button>
+            </div>
+            <a
+              href="https://cal.com/el-asesor-fiscal/15min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-text-muted hover:text-accent transition-colors duration-300 underline underline-offset-4 decoration-border hover:decoration-accent"
+              onClick={() => trackEvent("book_call", { source: "landing_hero" })}
+            >
+              O agenda una llamada de 15 min →
+            </a>
           </div>
         </div>
       </section>
@@ -172,9 +184,20 @@ export function LandingTemplate({ data }: { data: LandingData }) {
           <p className="text-text-secondary text-base md:text-lg mb-8 max-w-xl mx-auto">
             Solicita tu diagnóstico gratuito. Sin compromiso, sin presión.
           </p>
-          <Button href="/aplicar" size="lg" trackAs="click_cta_primary">
-            Aplicar a una plaza
-          </Button>
+          <div className="flex flex-col items-center gap-4">
+            <Button href="/aplicar" size="lg" trackAs="click_cta_primary">
+              Aplicar a una plaza
+            </Button>
+            <a
+              href="https://cal.com/el-asesor-fiscal/15min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-text-muted hover:text-accent transition-colors duration-300 underline underline-offset-4 decoration-border hover:decoration-accent"
+              onClick={() => trackEvent("book_call", { source: "landing_bottom_cta" })}
+            >
+              ¿Prefieres hablar primero? Agenda una llamada →
+            </a>
+          </div>
         </div>
       </section>
     </>
