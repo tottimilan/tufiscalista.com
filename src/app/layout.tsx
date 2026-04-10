@@ -10,6 +10,7 @@ import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { ExitIntent } from "@/components/ui/ExitIntent";
 import { LoadingBar } from "@/components/ui/LoadingBar";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -92,6 +93,7 @@ export default function RootLayout({
         <Analytics />
         <ScrollTracker />
         <SpeedInsights />
+        <VercelAnalytics />
       </body>
     </html>
   );
