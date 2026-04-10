@@ -1,16 +1,41 @@
 import { NextResponse } from "next/server";
+import { z } from "zod";
 import { Resend } from "resend";
 import {
   isRateLimited,
   getClientIp,
   isHoneypotFilled,
   isTooFast,
+  verifyTurnstile,
+  isValidOrigin,
 } from "@/lib/antispam";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+const contactSchema = z.object({
+  nombre: z.string().min(2).max(100),
+  email: z.string().email().max(254),
+  mensaje: z.string().min(10).max(5000),
+  _t: z.number().optional(),
+  _turnstile: z.string().optional(),
+  website: z.string().max(0).optional(),
+  _gotcha: z.string().max(0).optional(),
+});
+
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
 export async function POST(request: Request) {
   try {
+    if (!isValidOrigin(request)) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
+
     const ip = getClientIp(request);
     if (isRateLimited(ip)) {
       return NextResponse.json(
@@ -19,9 +44,19 @@ export async function POST(request: Request) {
       );
     }
 
-    const body = await request.json();
+    const raw = await request.json();
+    const parsed = contactSchema.safeParse(raw);
 
-    if (isHoneypotFilled(body)) {
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: "Datos inválidos" },
+        { status: 400 }
+      );
+    }
+
+    const body = parsed.data;
+
+    if (isHoneypotFilled(body as Record<string, unknown>)) {
       return NextResponse.json({ success: true });
     }
 
@@ -29,19 +64,22 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: true });
     }
 
-    const { nombre, email, mensaje } = body;
-
-    if (!nombre || !email || !mensaje) {
+    const turnstileOk = await verifyTurnstile(body._turnstile, ip);
+    if (!turnstileOk) {
       return NextResponse.json(
-        { error: "Todos los campos son obligatorios" },
-        { status: 400 }
+        { error: "Verificación fallida. Recarga la página." },
+        { status: 403 }
       );
     }
+
+    const nombre = escapeHtml(body.nombre);
+    const email = escapeHtml(body.email);
+    const mensaje = escapeHtml(body.mensaje);
 
     await resend.emails.send({
       from: "Tu Fiscalista <no-reply@tufiscalista.com>",
       to: "info@tufiscalista.com",
-      replyTo: email,
+      replyTo: body.email,
       subject: `Mensaje de contacto: ${nombre}`,
       html: `
         <div style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto;">

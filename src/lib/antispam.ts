@@ -33,3 +33,43 @@ export function isTooFast(timestamp: unknown): boolean {
   if (typeof timestamp !== "number") return false;
   return Date.now() - timestamp < MIN_SUBMIT_TIME_MS;
 }
+
+const TURNSTILE_SECRET = process.env.TURNSTILE_SECRET_KEY ?? "";
+const TURNSTILE_VERIFY_URL =
+  "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+
+export async function verifyTurnstile(
+  token: unknown,
+  ip: string
+): Promise<boolean> {
+  if (!TURNSTILE_SECRET) return true;
+  if (typeof token !== "string" || !token) return false;
+
+  try {
+    const res = await fetch(TURNSTILE_VERIFY_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        secret: TURNSTILE_SECRET,
+        response: token,
+        remoteip: ip,
+      }),
+    });
+
+    const data = await res.json();
+    return data.success === true;
+  } catch {
+    return false;
+  }
+}
+
+export function isValidOrigin(request: Request): boolean {
+  const origin = request.headers.get("origin");
+  if (!origin) return true;
+  const allowed = [
+    "https://tufiscalista.com",
+    "https://www.tufiscalista.com",
+    "http://localhost:3000",
+  ];
+  return allowed.some((a) => origin.startsWith(a));
+}

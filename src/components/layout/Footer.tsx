@@ -71,6 +71,11 @@ export function Footer() {
             </p>
             <ul className="space-y-3 text-sm text-text-secondary">
               <li>
+                <Link href="/contacto" className="hover:text-accent transition-colors">
+                  Contacto
+                </Link>
+              </li>
+              <li>
                 <a
                   href="mailto:info@tufiscalista.com"
                   className="hover:text-accent transition-colors"

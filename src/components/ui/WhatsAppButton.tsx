@@ -1,11 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { trackEvent } from "@/lib/tracking";
 
+const WA_PARTS = ["https://wa", ".me/34", "698", "249", "376"];
+const WA_MSG = "?text=Hola%2C%20me%20interesa%20el%20servicio%20de%20asesor%C3%ADa%20fiscal";
+
 export function WhatsAppButton() {
   const [visible, setVisible] = useState(false);
+  const href = useMemo(() => WA_PARTS.join("") + WA_MSG, []);
 
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > window.innerHeight * 0.5);
@@ -22,7 +26,7 @@ export function WhatsAppButton() {
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0, opacity: 0 }}
           transition={{ type: "spring", stiffness: 260, damping: 20 }}
-          href="https://wa.me/34698249376?text=Hola%2C%20me%20interesa%20el%20servicio%20de%20asesor%C3%ADa%20fiscal"
+          href={href}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Contactar por WhatsApp"

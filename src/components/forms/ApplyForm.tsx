@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { trackEvent } from "@/lib/tracking";
+import { Turnstile } from "@/components/ui/Turnstile";
 import { cn } from "@/lib/utils";
 
 const schema = z.object({
@@ -60,6 +61,11 @@ export function ApplyForm() {
   const [sending, setSending] = useState(false);
   const honeypotRef = useRef<HTMLInputElement>(null);
   const mountTime = useRef(Date.now());
+  const turnstileToken = useRef("");
+
+  const handleTurnstile = useCallback((token: string) => {
+    turnstileToken.current = token;
+  }, []);
 
   useEffect(() => {
     mountTime.current = Date.now();
@@ -83,7 +89,7 @@ export function ApplyForm() {
       const res = await fetch("/api/apply", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, _t: mountTime.current }),
+        body: JSON.stringify({ ...data, _t: mountTime.current, _turnstile: turnstileToken.current }),
       });
       if (res.status === 429) {
         alert("Demasiadas solicitudes. Espera un momento.");
@@ -222,6 +228,8 @@ export function ApplyForm() {
               className={cn(inputClasses, "resize-none")}
             />
           </FormInput>
+
+          <Turnstile onVerify={handleTurnstile} onExpire={() => { turnstileToken.current = ""; }} />
 
           <Button
             type="submit"

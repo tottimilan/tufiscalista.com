@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { trackEvent } from "@/lib/tracking";
+import { Turnstile } from "@/components/ui/Turnstile";
 
 const schema = z.object({
   nombre: z.string().min(2, "Mínimo 2 caracteres"),
@@ -18,6 +19,11 @@ export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const honeypotRef = useRef<HTMLInputElement>(null);
   const mountTime = useRef(Date.now());
+  const turnstileToken = useRef("");
+
+  const handleTurnstile = useCallback((token: string) => {
+    turnstileToken.current = token;
+  }, []);
 
   useEffect(() => {
     mountTime.current = Date.now();
@@ -40,7 +46,7 @@ export function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, _t: mountTime.current }),
+        body: JSON.stringify({ ...data, _t: mountTime.current, _turnstile: turnstileToken.current }),
       });
       if (res.status === 429) {
         setStatus("error");
@@ -128,6 +134,8 @@ export function ContactForm() {
           <p className="mt-1 text-xs text-danger">{errors.mensaje.message}</p>
         )}
       </div>
+
+      <Turnstile onVerify={handleTurnstile} onExpire={() => { turnstileToken.current = ""; }} />
 
       <button
         type="submit"

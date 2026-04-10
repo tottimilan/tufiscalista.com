@@ -1,16 +1,44 @@
 import { NextResponse } from "next/server";
+import { z } from "zod";
 import { Resend } from "resend";
 import {
   isRateLimited,
   getClientIp,
   isHoneypotFilled,
   isTooFast,
+  verifyTurnstile,
+  isValidOrigin,
 } from "@/lib/antispam";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+const applySchema = z.object({
+  nombre: z.string().min(2).max(100),
+  email: z.string().email().max(254),
+  telefono: z.string().min(9).max(20),
+  tipo: z.enum(["autonomo", "pyme"]),
+  facturacion: z.string().min(1).max(100),
+  mensaje: z.string().max(5000).optional(),
+  _t: z.number().optional(),
+  _turnstile: z.string().optional(),
+  website: z.string().max(0).optional(),
+  _gotcha: z.string().max(0).optional(),
+});
+
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
 export async function POST(request: Request) {
   try {
+    if (!isValidOrigin(request)) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
+
     const ip = getClientIp(request);
     if (isRateLimited(ip)) {
       return NextResponse.json(
@@ -19,9 +47,19 @@ export async function POST(request: Request) {
       );
     }
 
-    const data = await request.json();
+    const raw = await request.json();
+    const parsed = applySchema.safeParse(raw);
 
-    if (isHoneypotFilled(data)) {
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: "Datos inválidos" },
+        { status: 400 }
+      );
+    }
+
+    const data = parsed.data;
+
+    if (isHoneypotFilled(data as Record<string, unknown>)) {
       return NextResponse.json({ success: true });
     }
 
@@ -29,12 +67,25 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: true });
     }
 
-    const { nombre, email, telefono, tipo, facturacion, mensaje } = data;
+    const turnstileOk = await verifyTurnstile(data._turnstile, ip);
+    if (!turnstileOk) {
+      return NextResponse.json(
+        { error: "Verificación fallida. Recarga la página." },
+        { status: 403 }
+      );
+    }
+
+    const nombre = escapeHtml(data.nombre);
+    const email = escapeHtml(data.email);
+    const telefono = escapeHtml(data.telefono);
+    const tipo = data.tipo;
+    const facturacion = escapeHtml(data.facturacion);
+    const mensaje = data.mensaje ? escapeHtml(data.mensaje) : "";
 
     await resend.emails.send({
       from: "Tu Fiscalista <no-reply@tufiscalista.com>",
       to: "info@tufiscalista.com",
-      replyTo: email,
+      replyTo: data.email,
       subject: `Nueva solicitud: ${nombre} (${tipo})`,
       html: `
         <div style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -78,7 +129,7 @@ export async function POST(request: Request) {
 
     await resend.emails.send({
       from: "Tu Fiscalista <no-reply@tufiscalista.com>",
-      to: email,
+      to: data.email,
       subject: "Hemos recibido tu solicitud — Tu Fiscalista",
       html: `
         <div style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto; color: #F5F7FA;">
