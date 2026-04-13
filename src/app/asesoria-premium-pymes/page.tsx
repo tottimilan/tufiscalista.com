@@ -78,6 +78,11 @@ const data = {
         "Normalmente con una cuota mensual o trimestral fija, según el alcance acordado. Evitamos sorpresas: el precio se define desde el inicio y solo cambia si el alcance del encargo varía.",
     },
   ],
+  relatedResources: [
+    { href: "/como-pagar-menos-impuestos-legalmente", title: "Cómo pagar menos impuestos de forma legal", type: "guia" },
+    { href: "/blog/planificacion-fiscal-pymes", title: "Planificación fiscal para pymes", type: "blog" },
+    { href: "/autonomo-vs-sl", title: "Autónomo frente a SL: qué te conviene", type: "guia" },
+  ],
 };
 
 export default function AsesoriaPremiumPymesPage() {

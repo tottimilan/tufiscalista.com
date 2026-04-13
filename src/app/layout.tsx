@@ -27,11 +27,13 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     title: `${SITE.name} — Asesoría Fiscal Boutique`,
     description: SITE.description,
+    images: [{ url: "/og-default.png", width: 1200, height: 630, alt: SITE.name }],
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE.name} — Asesoría Fiscal Boutique`,
     description: SITE.description,
+    images: ["/og-default.png"],
   },
   robots: {
     index: true,

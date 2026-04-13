@@ -78,6 +78,11 @@ const data = {
         "Consideramos facturación, número de operaciones, estructura societaria y complejidad. En el diagnóstico gratuito te indicamos el alcance del servicio y el precio sin compromiso.",
     },
   ],
+  relatedResources: [
+    { href: "/autonomo-vs-sl", title: "Autónomo frente a SL: qué te conviene", type: "guia" },
+    { href: "/como-pagar-menos-impuestos-legalmente", title: "Cómo pagar menos impuestos de forma legal", type: "guia" },
+    { href: "/blog/planificacion-fiscal-pymes", title: "Planificación fiscal para pymes", type: "blog" },
+  ],
 };
 
 export default function AsesoriaFiscalParaPymesPage() {

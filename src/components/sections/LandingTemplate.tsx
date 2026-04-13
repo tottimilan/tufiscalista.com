@@ -1,13 +1,20 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Accordion } from "@/components/ui/Accordion";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { trackEvent } from "@/lib/tracking";
-import { TESTIMONIALS } from "@/lib/constants";
+import { TESTIMONIALS, PLAZAS } from "@/lib/constants";
+
+interface RelatedResource {
+  href: string;
+  title: string;
+  type: string;
+}
 
 interface LandingData {
   badge: string;
@@ -17,10 +24,14 @@ interface LandingData {
   benefits: string[];
   method: { step: string; desc: string }[];
   faq: { question: string; answer: string }[];
+  relatedResources?: RelatedResource[];
 }
 
 export function LandingTemplate({ data }: { data: LandingData }) {
   const tracked = useRef(false);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const [showSticky, setShowSticky] = useState(false);
+
   useEffect(() => {
     if (!tracked.current) {
       tracked.current = true;
@@ -28,9 +39,21 @@ export function LandingTemplate({ data }: { data: LandingData }) {
     }
   }, [data.badge]);
 
+  useEffect(() => {
+    function handleScroll() {
+      if (!heroRef.current) return;
+      const rect = heroRef.current.getBoundingClientRect();
+      setShowSticky(rect.bottom < -100);
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const remaining = PLAZAS.total - PLAZAS.ocupadas;
+
   return (
     <>
-      <section className="pt-28 pb-14 md:pt-40 md:pb-28">
+      <section ref={heroRef} className="pt-28 pb-14 md:pt-40 md:pb-28">
         <div className="container-premium text-center">
           <Badge variant="gold">{data.badge}</Badge>
           <h1 className="mt-5 font-serif text-3xl md:text-5xl lg:text-6xl font-semibold leading-tight max-w-4xl mx-auto text-balance">
@@ -39,6 +62,29 @@ export function LandingTemplate({ data }: { data: LandingData }) {
           <p className="mt-5 text-text-secondary text-base md:text-xl max-w-2xl mx-auto leading-relaxed">
             {data.subtitle}
           </p>
+
+          {/* Trust indicators */}
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-text-muted">
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+              Solo {PLAZAS.total} clientes
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-success" />
+              Respuesta en &lt;24h
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+              Sin permanencia
+            </span>
+            {remaining <= 8 && (
+              <span className="flex items-center gap-1.5 text-accent font-medium">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                {remaining} plazas disponibles
+              </span>
+            )}
+          </div>
+
           <div className="mt-8 flex flex-col items-center gap-4">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <Button href="/aplicar" size="lg" trackAs="click_cta_primary">
@@ -95,15 +141,7 @@ export function LandingTemplate({ data }: { data: LandingData }) {
               {data.benefits.map((b, i) => (
                 <ScrollReveal key={i} delay={i * 0.05}>
                   <div className="flex items-start gap-3 p-4 rounded-md border border-border bg-bg-secondary/30 hover:border-accent/20 hover:bg-bg-secondary/50 transition-all duration-300 group">
-                    <svg
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      className="text-accent mt-0.5 shrink-0 group-hover:scale-110 transition-transform"
-                    >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent mt-0.5 shrink-0 group-hover:scale-110 transition-transform">
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
                     <span className="text-sm text-text-primary">{b}</span>
@@ -129,12 +167,8 @@ export function LandingTemplate({ data }: { data: LandingData }) {
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <div>
-                      <h3 className="font-semibold text-text-primary mb-1">
-                        {m.step}
-                      </h3>
-                      <p className="text-sm text-text-secondary leading-relaxed">
-                        {m.desc}
-                      </p>
+                      <h3 className="font-semibold text-text-primary mb-1">{m.step}</h3>
+                      <p className="text-sm text-text-secondary leading-relaxed">{m.desc}</p>
                     </div>
                   </div>
                 </ScrollReveal>
@@ -154,16 +188,10 @@ export function LandingTemplate({ data }: { data: LandingData }) {
               {TESTIMONIALS.map((t, i) => (
                 <ScrollReveal key={i} delay={i * 0.1}>
                   <div className="rounded-lg border border-border bg-bg-secondary/50 p-6 h-full hover:border-accent/20 hover:bg-bg-secondary/70 transition-all duration-300">
-                    <p className="font-serif text-lg font-bold text-accent mb-3">
-                      {t.result}
-                    </p>
-                    <p className="text-text-secondary text-sm leading-relaxed mb-4">
-                      &ldquo;{t.quote}&rdquo;
-                    </p>
+                    <p className="font-serif text-lg font-bold text-accent mb-3">{t.result}</p>
+                    <p className="text-text-secondary text-sm leading-relaxed mb-4">&ldquo;{t.quote}&rdquo;</p>
                     <div className="pt-3 border-t border-border">
-                      <p className="text-sm font-medium text-text-primary">
-                        {t.name}
-                      </p>
+                      <p className="text-sm font-medium text-text-primary">{t.name}</p>
                       <p className="text-xs text-text-muted">{t.role}</p>
                     </div>
                   </div>
@@ -184,6 +212,34 @@ export function LandingTemplate({ data }: { data: LandingData }) {
           </div>
         </div>
       </section>
+
+      {data.relatedResources && data.relatedResources.length > 0 && (
+        <section className="py-10 md:py-16">
+          <div className="container-premium">
+            <div className="max-w-3xl mx-auto">
+              <h3 className="text-sm font-medium tracking-widest uppercase text-text-muted mb-5 text-center">
+                Recursos relacionados
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {data.relatedResources.map((r) => (
+                  <Link
+                    key={r.href}
+                    href={r.href}
+                    className="flex items-start gap-3 p-4 rounded-lg border border-border bg-bg-secondary/30 hover:border-accent/30 hover:bg-bg-secondary/50 transition-all group"
+                  >
+                    <span className="mt-0.5 text-accent text-xs font-semibold tracking-wider uppercase shrink-0">
+                      {r.type === "blog" ? "Blog" : "Guía"}
+                    </span>
+                    <span className="text-sm text-text-primary group-hover:text-accent transition-colors">
+                      {r.title}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="py-14 md:py-28">
         <div className="container-premium text-center">
@@ -209,6 +265,15 @@ export function LandingTemplate({ data }: { data: LandingData }) {
           </div>
         </div>
       </section>
+
+      {/* Sticky mobile CTA */}
+      {showSticky && (
+        <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-bg-primary/95 backdrop-blur-sm border-t border-border p-3 flex items-center justify-center gap-3">
+          <Button href="/aplicar" size="sm" trackAs="click_cta_primary" className="flex-1 max-w-xs">
+            Solicitar diagnóstico
+          </Button>
+        </div>
+      )}
     </>
   );
 }

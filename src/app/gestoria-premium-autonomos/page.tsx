@@ -78,6 +78,11 @@ const data = {
         "Sí. Revisamos si cumples requisitos para las bonificaciones vigentes (tarifa plana, reducciones por maternidad, zonas económicas, etc.) y te guiamos en la tramitación ante la Seguridad Social.",
     },
   ],
+  relatedResources: [
+    { href: "/gastos-deducibles-autonomos", title: "Gastos deducibles para autónomos", type: "guia" },
+    { href: "/blog/7-deducciones-autonomos", title: "7 deducciones que los autónomos se dejan", type: "blog" },
+    { href: "/modelos-trimestrales-autonomos", title: "Modelos trimestrales para autónomos", type: "guia" },
+  ],
 };
 
 export default function GestoriaPremiumAutonomosPage() {

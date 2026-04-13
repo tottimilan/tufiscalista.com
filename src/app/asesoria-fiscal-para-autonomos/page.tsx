@@ -78,6 +78,12 @@ const data = {
         "Depende de tu facturación, régimen de IVA y número de operaciones. Ofrecemos un diagnóstico gratuito donde te indicamos el alcance y el precio de forma clara, sin sorpresas.",
     },
   ],
+  relatedResources: [
+    { href: "/gastos-deducibles-autonomos", title: "Gastos deducibles para autónomos", type: "guia" },
+    { href: "/modelos-trimestrales-autonomos", title: "Modelos trimestrales para autónomos", type: "guia" },
+    { href: "/blog/7-deducciones-autonomos", title: "7 deducciones que los autónomos se dejan", type: "blog" },
+    { href: "/blog/calendario-fiscal-2026", title: "Calendario fiscal 2026: fechas clave", type: "blog" },
+  ],
 };
 
 export default function AsesoriaFiscalParaAutonomosPage() {

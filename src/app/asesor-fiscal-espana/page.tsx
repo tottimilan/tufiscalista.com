@@ -78,6 +78,11 @@ const data = {
         "No. Nuestro modelo es 100 % online y telemático. Toda la documentación, reuniones y comunicación se realizan por canales digitales, sin que tengas que acudir físicamente a ningún sitio.",
     },
   ],
+  relatedResources: [
+    { href: "/calendario-fiscal", title: "Calendario fiscal: plazos y obligaciones", type: "guia" },
+    { href: "/gastos-deducibles-autonomos", title: "Gastos deducibles para autónomos", type: "guia" },
+    { href: "/blog/autonomo-o-sl-que-te-conviene-2026", title: "Autónomo o SL: qué te conviene en 2026", type: "blog" },
+  ],
 };
 
 export default function AsesorFiscalEspanaPage() {

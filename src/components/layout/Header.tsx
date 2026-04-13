@@ -7,9 +7,25 @@ import { NAV_LINKS, SITE, PLAZAS } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
+const RESOURCE_LINKS = {
+  guias: [
+    { href: "/guia-factura-electronica", label: "Factura Electrónica" },
+    { href: "/verifactu-que-es", label: "VeriFactu" },
+    { href: "/gastos-deducibles-autonomos", label: "Gastos Deducibles" },
+    { href: "/autonomo-vs-sl", label: "Autónomo vs SL" },
+    { href: "/modelos-trimestrales-autonomos", label: "Modelos Trimestrales" },
+  ],
+  herramientas: [
+    { href: "/calculadora", label: "Calculadora Fiscal" },
+    { href: "/calendario-fiscal", label: "Calendario Fiscal" },
+    { href: "/recursos", label: "Todos los Recursos" },
+  ],
+};
+
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [resourcesOpen, setResourcesOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -48,6 +64,50 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
+
+            {/* Resources dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setResourcesOpen(true)}
+              onMouseLeave={() => setResourcesOpen(false)}
+            >
+              <button className="text-sm text-text-secondary hover:text-accent transition-colors duration-300 flex items-center gap-1 cursor-pointer">
+                Recursos
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth="1.5" className={cn("transition-transform duration-200", resourcesOpen && "rotate-180")}>
+                  <path d="M2 4l3 3 3-3" />
+                </svg>
+              </button>
+              <AnimatePresence>
+                {resourcesOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute top-full right-0 mt-2 w-72 rounded-xl border border-border bg-bg-secondary/95 backdrop-blur-md shadow-xl p-4"
+                  >
+                    <p className="text-[10px] font-medium tracking-widest uppercase text-text-muted mb-2">Guías</p>
+                    <div className="space-y-0.5 mb-3">
+                      {RESOURCE_LINKS.guias.map((link) => (
+                        <Link key={link.href} href={link.href} className="block px-3 py-1.5 text-sm text-text-secondary hover:text-accent hover:bg-accent-muted/30 rounded-md transition-colors">
+                          {link.label}
+                        </Link>
+                      ))}
+                    </div>
+                    <div className="border-t border-border pt-3">
+                      <p className="text-[10px] font-medium tracking-widest uppercase text-text-muted mb-2">Herramientas</p>
+                      <div className="space-y-0.5">
+                        {RESOURCE_LINKS.herramientas.map((link) => (
+                          <Link key={link.href} href={link.href} className="block px-3 py-1.5 text-sm text-text-secondary hover:text-accent hover:bg-accent-muted/30 rounded-md transition-colors">
+                            {link.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </nav>
 
           <div className="hidden lg:flex items-center gap-3">

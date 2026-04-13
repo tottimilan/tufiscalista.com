@@ -89,6 +89,23 @@ const data = {
         "Todos los días laborables. Las notificaciones tienen un período de gracia de 10 días naturales, pero nosotros actuamos mucho antes para maximizar el tiempo disponible de respuesta y evitar cualquier riesgo.",
     },
   ],
+  relatedResources: [
+    {
+      href: "/requerimientos-hacienda",
+      title: "Requerimientos de Hacienda: respuesta urgente",
+      type: "guia" as const,
+    },
+    {
+      href: "/calendario-fiscal",
+      title: "Calendario fiscal 2026: no pierdas ningún plazo",
+      type: "guia" as const,
+    },
+    {
+      href: "/blog/calendario-fiscal-2026",
+      title: "Calendario fiscal 2026: todas las fechas clave",
+      type: "blog" as const,
+    },
+  ],
 };
 
 export default function NotificacionesHaciendaPage() {

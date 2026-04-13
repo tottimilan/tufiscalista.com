@@ -78,6 +78,11 @@ const data = {
         "Sí. Trabajamos de forma telemática con clientes en toda España. La sede física no importa; lo importante es la relación cercana y el seguimiento personalizado que ofrecemos.",
     },
   ],
+  relatedResources: [
+    { href: "/como-pagar-menos-impuestos-legalmente", title: "Cómo pagar menos impuestos de forma legal", type: "guia" },
+    { href: "/blog/planificacion-fiscal-pymes", title: "Planificación fiscal para pymes", type: "blog" },
+    { href: "/comparativa-boutique-vs-gestoria", title: "Boutique frente a gestoría tradicional", type: "guia" },
+  ],
 };
 
 export default function AsesoriaFiscalPremiumPage() {

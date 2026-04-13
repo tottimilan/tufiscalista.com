@@ -78,6 +78,11 @@ const data = {
         "Los impuestos ya presentados quedan como están. Nosotros asumimos la gestión a partir del alta y nos encargamos de las siguientes obligaciones. Si detectamos algo en el historial que convenga revisar, te lo comentamos.",
     },
   ],
+  relatedResources: [
+    { href: "/comparativa-boutique-vs-gestoria", title: "Boutique frente a gestoría tradicional", type: "guia" },
+    { href: "/blog/como-cambiar-de-asesoria", title: "Cómo cambiar de asesoría sin líos", type: "blog" },
+    { href: "/errores-frecuentes-autonomos", title: "Errores frecuentes de autónomos", type: "guia" },
+  ],
 };
 
 export default function CambiarDeAsesoriaPage() {

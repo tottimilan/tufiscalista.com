@@ -89,6 +89,23 @@ const data = {
         "Gestionamos todo tipo: requerimientos de información, de documentación, comprobaciones limitadas, liquidaciones provisionales y paralelas. Sea cual sea el que hayas recibido, lo analizamos y te asesoramos.",
     },
   ],
+  relatedResources: [
+    {
+      href: "/blog/requerimiento-hacienda-que-hacer",
+      title: "Qué hacer si recibes un requerimiento de Hacienda",
+      type: "blog" as const,
+    },
+    {
+      href: "/calendario-fiscal",
+      title: "Calendario fiscal 2026: plazos importantes",
+      type: "guia" as const,
+    },
+    {
+      href: "/sanciones-fiscales",
+      title: "Sanciones fiscales: recurso y reducción",
+      type: "guia" as const,
+    },
+  ],
 };
 
 export default function RequerimientosHaciendaPage() {

@@ -6,6 +6,16 @@ import { post as calendarioFiscal } from "./posts/calendario-fiscal-2026";
 import { post as cambiarAsesoria } from "./posts/cambiar-de-asesoria";
 import { post as planificacionPymes } from "./posts/planificacion-fiscal-pymes";
 import { post as requerimientoHacienda } from "./posts/requerimiento-hacienda";
+import { post as queHaceAsesor } from "./posts/que-hace-asesor-fiscal";
+import { post as comoElegirAsesoria } from "./posts/como-elegir-asesoria";
+import { post as impuestoSociedades } from "./posts/impuesto-sociedades-pymes-2026";
+import { post as ivaAutonomos } from "./posts/iva-autonomos-guia";
+import { post as altaAutonomo } from "./posts/alta-autonomo-paso-a-paso";
+import { post as renta2026Autonomos } from "./posts/renta-2026-autonomos";
+import { post as cuantoCuestaAsesor } from "./posts/cuanto-cuesta-asesor-fiscal";
+import { post as bizumHacienda } from "./posts/bizum-hacienda-control";
+import { post as cotizacionesAutonomos } from "./posts/cotizaciones-autonomos-2026";
+import { post as inspeccionesHacienda } from "./posts/inspecciones-hacienda-2026";
 
 export const blogPosts = [
   autonomoOSl,
@@ -14,6 +24,16 @@ export const blogPosts = [
   cambiarAsesoria,
   planificacionPymes,
   requerimientoHacienda,
+  queHaceAsesor,
+  comoElegirAsesoria,
+  impuestoSociedades,
+  ivaAutonomos,
+  altaAutonomo,
+  renta2026Autonomos,
+  cuantoCuestaAsesor,
+  bizumHacienda,
+  cotizacionesAutonomos,
+  inspeccionesHacienda,
 ].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 export function getPostBySlug(slug: string) {

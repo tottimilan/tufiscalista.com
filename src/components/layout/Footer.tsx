@@ -1,17 +1,66 @@
 import Link from "next/link";
-import { SITE, NAV_LINKS } from "@/lib/constants";
+import { SITE } from "@/lib/constants";
 
-const legalLinks = [
-  { href: "/politica-privacidad", label: "Política de Privacidad" },
-  { href: "/aviso-legal", label: "Aviso Legal" },
-];
+const footerLinks = {
+  servicio: [
+    { href: "/servicio-premium", label: "Servicio Premium" },
+    { href: "/como-trabajamos", label: "Cómo Trabajamos" },
+    { href: "/precio", label: "Precio" },
+    { href: "/aplicar", label: "Aplicar a una Plaza" },
+    { href: "/faq", label: "Preguntas Frecuentes" },
+    { href: "/contacto", label: "Contacto" },
+  ],
+  recursos: [
+    { href: "/blog", label: "Blog" },
+    { href: "/recursos", label: "Centro de Recursos" },
+    { href: "/calculadora", label: "Calculadora Fiscal" },
+    { href: "/calendario-fiscal", label: "Calendario Fiscal" },
+    { href: "/gastos-deducibles-autonomos", label: "Gastos Deducibles" },
+    { href: "/guia-factura-electronica", label: "Factura Electrónica" },
+    { href: "/autonomo-vs-sl", label: "Autónomo vs SL" },
+    { href: "/comparativa-boutique-vs-gestoria", label: "Boutique vs Gestoría" },
+  ],
+  urgente: [
+    { href: "/requerimientos-hacienda", label: "Requerimientos Hacienda" },
+    { href: "/inspeccion-hacienda", label: "Inspección Hacienda" },
+    { href: "/notificaciones-hacienda", label: "Notificaciones Hacienda" },
+    { href: "/sanciones-fiscales", label: "Sanciones Fiscales" },
+    { href: "/cambiar-de-asesoria", label: "Cambiar de Asesoría" },
+  ],
+  legal: [
+    { href: "/politica-privacidad", label: "Política de Privacidad" },
+    { href: "/aviso-legal", label: "Aviso Legal" },
+  ],
+};
+
+function FooterColumn({ title, links }: { title: string; links: { href: string; label: string }[] }) {
+  return (
+    <div>
+      <p className="text-xs font-medium tracking-widest uppercase text-text-muted mb-4">
+        {title}
+      </p>
+      <ul className="space-y-2.5">
+        {links.map((link) => (
+          <li key={link.href}>
+            <Link
+              href={link.href}
+              className="text-sm text-text-secondary hover:text-accent transition-colors"
+            >
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export function Footer() {
   return (
     <footer className="border-t border-border bg-bg-secondary/30">
       <div className="container-premium py-16 md:py-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
-          <div className="sm:col-span-2 lg:col-span-1">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
+          <div className="col-span-2 sm:col-span-2 lg:col-span-1">
             <Link
               href="/"
               className="font-serif text-2xl font-semibold text-text-primary hover:text-accent transition-colors"
@@ -22,85 +71,20 @@ export function Footer() {
               Asesoría fiscal boutique. Máximo 20 clientes. Planificación,
               seguimiento y criterio para tu negocio.
             </p>
+            <a
+              href="mailto:info@tufiscalista.com"
+              className="mt-3 block text-sm text-text-muted hover:text-accent transition-colors"
+            >
+              info@tufiscalista.com
+            </a>
           </div>
 
-          <div>
-            <p className="text-xs font-medium tracking-widest uppercase text-text-muted mb-4">
-              Navegación
-            </p>
-            <ul className="space-y-3">
-              {NAV_LINKS.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-text-secondary hover:text-accent transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <FooterColumn title="Servicio" links={footerLinks.servicio} />
+          <FooterColumn title="Recursos" links={footerLinks.recursos} />
+          <FooterColumn title="Urgente" links={footerLinks.urgente} />
 
           <div>
-            <p className="text-xs font-medium tracking-widest uppercase text-text-muted mb-4">
-              Servicio
-            </p>
-            <ul className="space-y-3">
-              <li>
-                <Link href="/aplicar" className="text-sm text-text-secondary hover:text-accent transition-colors">
-                  Aplicar a una plaza
-                </Link>
-              </li>
-              <li>
-                <Link href="/precio" className="text-sm text-text-secondary hover:text-accent transition-colors">
-                  Precio
-                </Link>
-              </li>
-              <li>
-                <Link href="/faq" className="text-sm text-text-secondary hover:text-accent transition-colors">
-                  Preguntas frecuentes
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <p className="text-xs font-medium tracking-widest uppercase text-text-muted mb-4">
-              Contacto
-            </p>
-            <ul className="space-y-3 text-sm text-text-secondary">
-              <li>
-                <Link href="/contacto" className="hover:text-accent transition-colors">
-                  Contacto
-                </Link>
-              </li>
-              <li>
-                <a
-                  href="mailto:info@tufiscalista.com"
-                  className="hover:text-accent transition-colors"
-                >
-                  info@tufiscalista.com
-                </a>
-              </li>
-              <li>Madrid, España</li>
-            </ul>
-
-            <p className="text-xs font-medium tracking-widest uppercase text-text-muted mb-3 mt-8">
-              Legal
-            </p>
-            <ul className="space-y-2">
-              {legalLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-xs text-text-muted hover:text-accent transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <FooterColumn title="Legal" links={footerLinks.legal} />
           </div>
         </div>
 

@@ -89,6 +89,23 @@ const data = {
         "La mejor prevención es llevar la fiscalidad al día con asesoramiento profesional: presentar todo en plazo, aplicar correctamente las deducciones y conservar la documentación justificativa. Nosotros te ayudamos a establecer esos hábitos.",
     },
   ],
+  relatedResources: [
+    {
+      href: "/requerimientos-hacienda",
+      title: "Requerimientos de Hacienda: actuamos en 24h",
+      type: "guia" as const,
+    },
+    {
+      href: "/inspeccion-hacienda",
+      title: "Inspección de Hacienda: defensa profesional",
+      type: "guia" as const,
+    },
+    {
+      href: "/blog/requerimiento-hacienda-que-hacer",
+      title: "Qué hacer ante un requerimiento de Hacienda",
+      type: "blog" as const,
+    },
+  ],
 };
 
 export default function SancionesFiscalesPage() {

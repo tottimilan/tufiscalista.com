@@ -1,5 +1,5 @@
 # Estado Actual — Google Ads Tu Fiscalista
-## Actualizado: 7 abril 2026 (sesión 2)
+## Actualizado: 10 abril 2026 (sesión 3)
 
 ---
 
@@ -10,10 +10,13 @@
 - Enhanced Measurement activado
 - Etiqueta de Google detectada en tufiscalista.com
 
-### Paso 2: Conversiones importadas
+### Paso 2: Conversiones importadas en Google Ads (todas activas)
 - `start_apply_form` → Envío de formulario para clientes potenciales
 - `click_cta_primary` → Envío de formulario para clientes potenciales
-- Pendiente de importar cuando aparezcan: `submit_apply_form`, `book_call`, `click_whatsapp`, `submit_contact_form`
+- `submit_apply_form` → Envío de formulario para clientes potenciales ✅ (importado 10 abril)
+- `book_call` → Solicitud de cita ✅ (importado 10 abril)
+- `click_whatsapp` → Contacto ✅ (importado 10 abril)
+- `submit_contact_form` → Contacto ✅ (importado 10 abril)
 
 ### Paso 3: Campañas creadas y publicadas
 
@@ -41,8 +44,10 @@
 - 6 sitelinks configurados
 - Landing: /cambiar-de-asesoria
 
-### Paso 4: Keywords negativas básicas añadidas
-- ~25 términos negativos añadidos a ambas campañas
+### Paso 4: Keywords negativas completas
+- ~25 términos negativos iniciales + 96 términos adicionales (10 abril)
+- Total: ~121 negativos en ambas campañas
+- Excluidos intencionalmente de negativas: "contratar asesor", "comparativa", "ranking", "opiniones", "reviews", "mejor gestoría", "top gestorías", "listado gestorías", "versus", "vs", "guía gratis" (son búsquedas de consideración válidas)
 
 ### Mejoras al código web (sesión 1)
 - Tracking `book_call` añadido a enlaces Cal.com (HeroHome, ApplySection)
@@ -64,15 +69,16 @@
 
 ## Pendiente
 
-### Tu parte: Deploy del código (IMPORTANTE — hacer primero)
+### ~~Deploy del código~~ ✅ COMPLETADO (10 abril)
 
-Los cambios de tracking están en local. Hay que desplegarlos para que GA4 empiece a recibir los nuevos eventos.
+### ~~Importar conversiones nuevas en GA4~~ ✅ COMPLETADO (10 abril)
 
-```
-cd tufiscalista && git add . && git commit -m "Add tracking for WhatsApp, Cal.com, contact form" && git push
-```
-
-Vercel desplegará automáticamente.
+### ~~Fase 2 del blueprint~~ ✅ COMPLETADO (10 abril)
+- 8 landings TOFU, 4 landings urgentes, /recursos, /comparativa, /testimonios
+- Blog refactorizado a arquitectura modular
+- Tracking gaps corregidos (view_landing, compare_table_interaction)
+- LeadMagnetGate + API route
+- Sitemap actualizado con 19 nuevas rutas
 
 ### Tu parte: Google Ads — Añadir Ad Groups restantes
 
@@ -177,7 +183,7 @@ Deja la gestoría de volumen. Trabaja con un equipo que anticipa por ti.
 
 ---
 
-### Tu parte: Completar keywords negativas (~95 términos más)
+### ~~Completar keywords negativas~~ ✅ COMPLETADO (10 abril)
 
 Ir a cada campaña → **Palabras clave** → **Palabras clave negativas** → **+** → Pegar las siguientes:
 
@@ -324,20 +330,6 @@ gestoría barata
 
 ---
 
-### Tu parte: Importar conversiones nuevas en GA4 (en 24-48h)
-
-Después del deploy, los nuevos eventos empezarán a registrarse. Cuando aparezcan:
-
-1. Google Ads → Objetivos → Conversiones → **+ Nueva acción de conversión**
-2. Seleccionar **Google Analytics**
-3. Importar:
-   - `submit_apply_form` → categoría "Envío de formulario para clientes potenciales"
-   - `book_call` → categoría "Solicitud de cita"
-   - `click_whatsapp` → categoría "Contacto"
-   - `submit_contact_form` → categoría "Contacto"
-
----
-
 ### Prioridad Media (semana 2-3)
 
 5. **Configurar scripts de automatización**
@@ -365,10 +357,10 @@ Después del deploy, los nuevos eventos empezarán a registrarse. Cuando aparezc
 | `click_cta_primary` | Button component (todas las CTAs principales) | Activo en GA4 |
 | `click_cta_secondary` | Button component (CTAs secundarias) | Activo en GA4 |
 | `start_apply_form` | ApplyForm (primer focus) | Activo en GA4 |
-| `submit_apply_form` | ApplyForm (envío exitoso) | Pendiente GA4 |
-| `submit_contact_form` | ContactForm (envío exitoso) | **NUEVO** — pendiente GA4 |
-| `book_call` | HeroHome, ApplySection, ExitIntent, /aplicar, BlogCTA, /contacto, LandingTemplate (x2) | Pendiente GA4 |
-| `click_whatsapp` | WhatsAppButton (flotante) | **NUEVO** — pendiente GA4 |
+| `submit_apply_form` | ApplyForm (envío exitoso) | ✅ Activo en GA4 + Google Ads |
+| `submit_contact_form` | ContactForm (envío exitoso) | ✅ Activo en GA4 + Google Ads |
+| `book_call` | HeroHome, ApplySection, ExitIntent, /aplicar, BlogCTA, /contacto, LandingTemplate, TOFUTemplate | ✅ Activo en GA4 + Google Ads |
+| `click_whatsapp` | WhatsAppButton (flotante) | ✅ Activo en GA4 + Google Ads |
 | `calculator_used` | FiscalCalculator | Activo en GA4 |
 | `exit_intent_shown` | ExitIntent popup | Activo en GA4 |
 | `scroll_50` | ScrollTracker | Activo en GA4 |

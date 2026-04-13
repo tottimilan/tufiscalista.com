@@ -89,6 +89,23 @@ const data = {
         "Si no estás de acuerdo con la regularización propuesta, se firma un acta de disconformidad y se abren los plazos para presentar alegaciones y, si es necesario, recurrir. Nosotros te acompañamos en cada fase hasta agotar las vías disponibles.",
     },
   ],
+  relatedResources: [
+    {
+      href: "/blog/requerimiento-hacienda-que-hacer",
+      title: "Qué hacer ante un requerimiento de Hacienda",
+      type: "blog" as const,
+    },
+    {
+      href: "/requerimientos-hacienda",
+      title: "Requerimientos de Hacienda: respuesta profesional",
+      type: "guia" as const,
+    },
+    {
+      href: "/sanciones-fiscales",
+      title: "Sanciones fiscales: recurso y reducción",
+      type: "guia" as const,
+    },
+  ],
 };
 
 export default function InspeccionHaciendaPage() {

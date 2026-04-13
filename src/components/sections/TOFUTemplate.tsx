@@ -21,6 +21,28 @@ interface TOFUData {
   relatedLandings?: { href: string; label: string }[];
 }
 
+function FAQSchema({ faq }: { faq: { question: string; answer: string }[] }) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
 export function TOFUTemplate({ data }: { data: TOFUData }) {
   const tracked = useRef(false);
   useEffect(() => {
@@ -30,8 +52,15 @@ export function TOFUTemplate({ data }: { data: TOFUData }) {
     }
   }, [data.badge]);
 
+  const tocItems = data.sections.map((s, i) => ({
+    id: `seccion-${i}`,
+    text: s.title,
+  }));
+
   return (
     <>
+      <FAQSchema faq={data.faq} />
+
       <section className="pt-28 pb-14 md:pt-40 md:pb-20">
         <div className="container-premium text-center">
           <Badge variant="gold">{data.badge}</Badge>
@@ -46,6 +75,30 @@ export function TOFUTemplate({ data }: { data: TOFUData }) {
 
       <section className="pb-14 md:pb-20">
         <div className="container-premium max-w-3xl mx-auto">
+          {/* Table of Contents */}
+          {tocItems.length >= 3 && (
+            <nav className="mb-10 rounded-lg border border-border bg-bg-secondary/50 p-5">
+              <p className="text-xs font-semibold tracking-widest uppercase text-text-muted mb-3">
+                En esta guía
+              </p>
+              <ol className="space-y-1.5 list-none">
+                {tocItems.map((item, i) => (
+                  <li key={item.id}>
+                    <a
+                      href={`#${item.id}`}
+                      className="flex items-start gap-2.5 text-sm text-text-secondary hover:text-accent transition-colors py-0.5"
+                    >
+                      <span className="text-accent font-semibold text-xs mt-0.5 shrink-0">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      {item.text}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          )}
+
           <div
             className="prose-custom"
             dangerouslySetInnerHTML={{ __html: data.intro }}
@@ -56,6 +109,7 @@ export function TOFUTemplate({ data }: { data: TOFUData }) {
       {data.sections.map((section, i) => (
         <section
           key={i}
+          id={`seccion-${i}`}
           className={`py-10 md:py-16 ${i % 2 === 0 ? "bg-bg-secondary/40" : ""}`}
         >
           <div className="container-premium max-w-3xl mx-auto">
@@ -88,15 +142,7 @@ export function TOFUTemplate({ data }: { data: TOFUData }) {
               {data.checklist.map((item, i) => (
                 <ScrollReveal key={i} delay={i * 0.04}>
                   <div className="flex items-start gap-3 p-3 rounded-md border border-border hover:border-accent/20 transition-colors">
-                    <svg
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      className="text-accent mt-0.5 shrink-0"
-                    >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent mt-0.5 shrink-0">
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
                     <span className="text-sm text-text-primary">{item}</span>
