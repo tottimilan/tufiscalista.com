@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
@@ -19,6 +20,14 @@ interface LandingData {
 }
 
 export function LandingTemplate({ data }: { data: LandingData }) {
+  const tracked = useRef(false);
+  useEffect(() => {
+    if (!tracked.current) {
+      tracked.current = true;
+      trackEvent("view_landing", { badge: data.badge });
+    }
+  }, [data.badge]);
+
   return (
     <>
       <section className="pt-28 pb-14 md:pt-40 md:pb-28">

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { blogPosts, getPostBySlug, getAllSlugs, formatDate } from "@/lib/blog";
+import { getPostBySlug, getAllSlugs, getRelatedPosts, formatDate } from "@/lib/blog";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { BlogCTA } from "@/components/ui/BlogCTA";
@@ -24,6 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: post.title,
     description: post.excerpt,
+    keywords: post.tags,
     openGraph: {
       title: post.title,
       description: post.excerpt,
@@ -101,9 +102,7 @@ export default async function BlogPostPage({ params }: Props) {
   const post = getPostBySlug(slug);
   if (!post) notFound();
 
-  const related = blogPosts
-    .filter((p) => p.slug !== post.slug)
-    .slice(0, 3);
+  const related = getRelatedPosts(slug, 3);
 
   return (
     <>

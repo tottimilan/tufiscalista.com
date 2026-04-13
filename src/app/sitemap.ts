@@ -17,6 +17,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/faq",
     "/blog",
     "/calculadora",
+    "/recursos",
+    "/testimonios",
+    "/comparativa-boutique-vs-gestoria",
   ];
 
   const bofuPages = [
@@ -27,6 +30,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/asesor-fiscal-espana",
     "/asesoria-fiscal-para-autonomos",
     "/asesoria-fiscal-para-pymes",
+  ];
+
+  const urgentPages = [
+    "/requerimientos-hacienda",
+    "/inspeccion-hacienda",
+    "/notificaciones-hacienda",
+    "/sanciones-fiscales",
+  ];
+
+  const tofuPages = [
+    "/guia-factura-electronica",
+    "/verifactu-que-es",
+    "/gastos-deducibles-autonomos",
+    "/autonomo-vs-sl",
+    "/modelos-trimestrales-autonomos",
+    "/calendario-fiscal",
+    "/errores-frecuentes-autonomos",
+    "/como-pagar-menos-impuestos-legalmente",
   ];
 
   const legalPages = ["/politica-privacidad", "/aviso-legal"];
@@ -50,6 +71,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.7,
+    })),
+    ...urgentPages.map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+    ...tofuPages.map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
     })),
     ...blogPages,
     ...legalPages.map((path) => ({

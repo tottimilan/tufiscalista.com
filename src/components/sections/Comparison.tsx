@@ -1,12 +1,22 @@
 "use client";
 
+import { useRef, useCallback } from "react";
 import { COMPARISON } from "@/lib/constants";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { trackEvent } from "@/lib/tracking";
 
 export function Comparison() {
+  const tracked = useRef(false);
+  const handleInteraction = useCallback(() => {
+    if (!tracked.current) {
+      tracked.current = true;
+      trackEvent("compare_table_interaction");
+    }
+  }, []);
+
   return (
-    <section className="py-14 md:py-28 bg-bg-secondary/40">
+    <section className="py-14 md:py-28 bg-bg-secondary/40" onClick={handleInteraction} onMouseEnter={handleInteraction}>
       <div className="container-premium">
         <SectionHeading
           eyebrow="La diferencia"
