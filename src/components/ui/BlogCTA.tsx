@@ -23,15 +23,20 @@ export function BlogCTA() {
         </span>{" "}
         este trimestre.
       </p>
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-        <Button href="/aplicar" size="sm" trackAs="click_cta_primary">
+      {/*
+        Siempre en columna: así el botón principal queda centrado en el eje
+        del bloque. En fila, justify-center centra el *par* botón+enlace y
+        el botón parece desviado a la izquierda; además el enlace secundario
+        debe leerse bien sobre el fondo claro.
+      */}
+      <div className="flex flex-col items-center gap-3 w-full max-w-md mx-auto">
+        <Button href="/aplicar" size="sm" trackAs="click_cta_primary" className="w-full sm:w-auto">
           Solicitar diagnóstico gratuito
         </Button>
         <TrackedCalLink
           href="https://cal.com/el-asesor-fiscal/15min"
           source="blog_cta"
-          className="text-sm underline underline-offset-4 transition-colors"
-          style={{ color: "#7a6b4f", textDecorationColor: "#c8a97755" }}
+          className="text-sm font-medium text-[#5c4d32] underline underline-offset-4 decoration-[#b08d4c]/50 hover:text-[#3d331f] hover:decoration-[#b08d4c]"
         >
           Agendar llamada →
         </TrackedCalLink>
