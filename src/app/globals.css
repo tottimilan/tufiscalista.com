@@ -254,7 +254,9 @@ select option {
   border-left: 3px solid #C8A977;
   margin: 2rem 0;
   padding: 1rem 1.5rem;
-  background: #f5f0e8;
+  background: #fefcf6;
+  border: 1px solid #e6dcc4;
+  border-left: 3px solid #C8A977;
   border-radius: 0 8px 8px 0;
   font-style: italic;
   color: #4a4a4a;
@@ -297,7 +299,7 @@ select option {
 .callout-info::before { content: "ℹ"; color: #5b8fc9; }
 
 .callout-warning {
-  background: #fdf6e9;
+  background: #fbeec8;
   border-left-color: #d4a340;
   color: #5a4520;
 }
@@ -311,8 +313,8 @@ select option {
 .callout-tip::before { content: "💡"; }
 
 .callout-example {
-  background: #f5f5f3;
-  border-left-color: #a0a0a0;
+  background: #ece5d2;
+  border-left-color: #8a8470;
   color: #3a3a3a;
 }
 
@@ -355,8 +357,8 @@ select option {
 }
 
 .key-takeaway {
-  background: linear-gradient(135deg, #faf5eb, #f5f0e6);
-  border: 1px solid #e0d5c0;
+  background: #fbf1d6;
+  border: 1px solid #e2cf9c;
   border-left: 4px solid #C8A977;
   border-radius: 8px;
   padding: 1.5rem 1.5rem 1.5rem 3.25rem;
@@ -371,15 +373,17 @@ select option {
   position: absolute;
   left: 1rem;
   top: 1.5rem;
-  color: #C8A977;
+  color: #b08d4c;
   font-size: 1.1rem;
 }
 
 .definition {
-  border-left: 2px solid #d0d0d0;
+  border-left: 2px solid #b8b09a;
   padding: 0.75rem 1.25rem;
   margin: 1.5rem 0;
-  background: #fafaf8;
+  background: #fefcf6;
+  border: 1px solid #e8e1cf;
+  border-left: 2px solid #b8b09a;
   border-radius: 0 6px 6px 0;
   font-size: 0.9375rem;
   color: #4a4a4a;
@@ -427,8 +431,8 @@ select option {
 .stat-row .stat-item {
   padding: 1.25rem 0.75rem;
   border-radius: 8px;
-  background: #faf8f4;
-  border: 1px solid #e8e4de;
+  background: #fefcf6;
+  border: 1px solid #e8dfc7;
 }
 .stat-row .stat-number {
   display: block;
@@ -518,9 +522,10 @@ select option {
 .compare-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border-top: 1px solid #eeebe5;
+  border-top: 1px solid #e3dcc8;
+  background: #fefcf6;
 }
-.compare-row:nth-child(even) { background: #fafaf8; }
+.compare-row:nth-child(even) { background: #f1ead7; }
 .compare-row span {
   padding: 0.65rem 1rem;
   color: #3a3a3a;
@@ -539,7 +544,7 @@ select option {
   border-radius: 6px;
   transition: background 0.2s;
 }
-.checklist-visual li:hover { background: #f5f3ee; }
+.checklist-visual li:hover { background: #ede4ce; }
 .checklist-visual li::before {
   content: "✓";
   position: absolute;
@@ -675,8 +680,8 @@ ol.step-list li::before {
 }
 
 .summary-box {
-  background: linear-gradient(135deg, #f7f5f0, #faf8f4);
-  border: 1px solid #e0dcd4;
+  background: #fefcf6;
+  border: 1px solid #e6dcc4;
   border-radius: 10px;
   padding: 1.5rem;
   margin: 2rem 0;
@@ -708,7 +713,9 @@ ol.step-list li::before {
 
 .author-note {
   border-left: 3px solid #C8A977;
-  background: linear-gradient(135deg, #faf7f0, #fdf9f3);
+  background: #fbf3df;
+  border: 1px solid #e8d4a3;
+  border-left: 3px solid #C8A977;
   padding: 1.25rem 1.5rem;
   border-radius: 0 8px 8px 0;
   margin: 2rem 0;
@@ -731,7 +738,8 @@ ol.step-list li::before {
   align-items: center;
   gap: 0.75rem;
   padding: 0.85rem 1.25rem;
-  background: #f5f3ee;
+  background: #ede4ce;
+  border: 1px solid #d9ceb0;
   border-radius: 8px;
   margin: 1.75rem 0;
   font-size: 0.9rem;
@@ -757,8 +765,9 @@ ol.step-list li::before {
   gap: 1rem;
   flex-wrap: wrap;
   padding: 1.25rem 1.5rem;
-  background: linear-gradient(135deg, #faf5eb, #f5f0e6);
-  border: 1px solid #e0d5c0;
+  background: #fefcf6;
+  border: 1px solid #e2cf9c;
+  border-left: 4px solid #C8A977;
   border-radius: 10px;
   margin: 2rem 0;
 }
@@ -786,67 +795,24 @@ ol.step-list li::before {
    BLOG READING WRAPPER
    ======================================== */
 
+/*
+  Fondo del área de lectura. Color sólido crema cálido para reducir el
+  cansancio visual respecto al blanco puro y aportar carácter editorial.
+*/
 .blog-reading-area {
-  background: #FAFAF8;
+  background-color: #f7f3ea;
   color: #3a3a3a;
   position: relative;
 }
 
 /*
-  Transición dark → light al inicio del bloque de lectura.
-  Paradas intermedias en tonos cálidos (mezcla del beige #FAFAF8 con el
-  azul muy oscuro #0B0F14) para evitar banding y eliminar el típico
-  paso por gris sucio que se nota en gradientes de alto contraste.
+  Variante con tono ligeramente más tostado/saturado, pensada para
+  romper la monotonía del fondo en secciones secundarias (caja del
+  autor, bloques destacados al final del artículo, etc.).
 */
-.blog-reading-area::before {
-  content: "";
-  position: absolute;
-  top: -120px;
-  left: 0;
-  right: 0;
-  height: 120px;
-  background: linear-gradient(
-    to bottom,
-    #0B0F14 0%,
-    #14171c 22%,
-    #2a2922 48%,
-    #6e624c 72%,
-    #c9bea5 88%,
-    #FAFAF8 100%
-  );
-  pointer-events: none;
-  z-index: 0;
+.blog-reading-area--warm {
+  background-color: #efe7d2;
 }
-
-/* Transición simétrica light → dark al final del bloque de lectura */
-.blog-reading-area::after {
-  content: "";
-  position: absolute;
-  bottom: -120px;
-  left: 0;
-  right: 0;
-  height: 120px;
-  background: linear-gradient(
-    to bottom,
-    #FAFAF8 0%,
-    #c9bea5 12%,
-    #6e624c 28%,
-    #2a2922 52%,
-    #14171c 78%,
-    #0B0F14 100%
-  );
-  pointer-events: none;
-  z-index: 0;
-}
-
-/*
-  Cuando dos secciones .blog-reading-area van seguidas (cuerpo + caja
-  de autor), ocultamos el gradiente de fin de la primera y el de inicio
-  de la segunda para que la zona clara se vea como un único bloque
-  continuo, sin franjas oscuras intermedias.
-*/
-.blog-reading-area:has(+ .blog-reading-area)::after { display: none; }
-.blog-reading-area + .blog-reading-area::before { display: none; }
 
 .blog-reading-area ::selection {
   background-color: #C8A97730;

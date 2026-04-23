@@ -185,9 +185,9 @@ export default async function BlogPostPage({ params }: Props) {
       </article>
 
       {/* Author box */}
-      <section className="blog-reading-area pb-16 md:pb-20">
+      <section className="blog-reading-area blog-reading-area--warm pt-12 pb-16 md:pt-14 md:pb-20">
         <div className="container-premium max-w-3xl mx-auto">
-          <div className="flex items-start gap-4 p-6 rounded-xl border border-[#e0dcd4] bg-[#f7f5f0]">
+          <div className="flex items-start gap-4 p-6 rounded-xl border border-[#e6dcc4] bg-[#fefcf6]">
             <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-[#C8A977]/30 shrink-0">
               <Image
                 src="/ali.jpg"
