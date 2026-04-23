@@ -1,14 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Accordion } from "@/components/ui/Accordion";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { PhoneLink } from "@/components/ui/PhoneLink";
+import { Avatar } from "@/components/ui/Avatar";
 import { trackEvent } from "@/lib/tracking";
-import { TESTIMONIALS, PLAZAS } from "@/lib/constants";
+import { TESTIMONIALS, PLAZAS, SITE } from "@/lib/constants";
 
 interface RelatedResource {
   href: string;
@@ -29,8 +31,6 @@ interface LandingData {
 
 export function LandingTemplate({ data }: { data: LandingData }) {
   const tracked = useRef(false);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const [showSticky, setShowSticky] = useState(false);
 
   useEffect(() => {
     if (!tracked.current) {
@@ -39,21 +39,11 @@ export function LandingTemplate({ data }: { data: LandingData }) {
     }
   }, [data.badge]);
 
-  useEffect(() => {
-    function handleScroll() {
-      if (!heroRef.current) return;
-      const rect = heroRef.current.getBoundingClientRect();
-      setShowSticky(rect.bottom < -100);
-    }
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   const remaining = PLAZAS.total - PLAZAS.ocupadas;
 
   return (
     <>
-      <section ref={heroRef} className="pt-28 pb-14 md:pt-40 md:pb-28">
+      <section className="pt-28 pb-14 md:pt-40 md:pb-28">
         <div className="container-premium text-center">
           <Badge variant="gold">{data.badge}</Badge>
           <h1 className="mt-5 font-serif text-3xl md:text-5xl lg:text-6xl font-semibold leading-tight max-w-4xl mx-auto text-balance">
@@ -94,15 +84,24 @@ export function LandingTemplate({ data }: { data: LandingData }) {
                 Ver cómo trabajamos
               </Button>
             </div>
-            <a
-              href="https://cal.com/el-asesor-fiscal/15min"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-text-muted hover:text-accent transition-colors duration-300 underline underline-offset-4 decoration-border hover:decoration-accent"
-              onClick={() => trackEvent("book_call", { source: "landing_hero" })}
-            >
-              O agenda una llamada de 15 min →
-            </a>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-x-5 gap-y-2 text-sm">
+              <a
+                href="https://cal.com/el-asesor-fiscal/15min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-text-muted hover:text-accent transition-colors duration-300 underline underline-offset-4 decoration-border hover:decoration-accent"
+                onClick={() => trackEvent("book_call", { source: "landing_hero" })}
+              >
+                Agenda una llamada de 15 min
+              </a>
+              <span className="hidden sm:inline text-text-muted">·</span>
+              <PhoneLink
+                source="landing_hero"
+                className="text-text-muted hover:text-accent"
+              >
+                <span className="underline underline-offset-4 decoration-border">{SITE.phoneDisplay}</span>
+              </PhoneLink>
+            </div>
           </div>
         </div>
       </section>
@@ -190,14 +189,43 @@ export function LandingTemplate({ data }: { data: LandingData }) {
                   <div className="rounded-lg border border-border bg-bg-secondary/50 p-6 h-full hover:border-accent/20 hover:bg-bg-secondary/70 transition-all duration-300">
                     <p className="font-serif text-lg font-bold text-accent mb-3">{t.result}</p>
                     <p className="text-text-secondary text-sm leading-relaxed mb-4">&ldquo;{t.quote}&rdquo;</p>
-                    <div className="pt-3 border-t border-border">
-                      <p className="text-sm font-medium text-text-primary">{t.name}</p>
-                      <p className="text-xs text-text-muted">{t.role}</p>
+                    <div className="pt-3 border-t border-border flex items-center gap-2.5">
+                      <Avatar name={t.name} size="sm" />
+                      <div>
+                        <p className="text-sm font-medium text-text-primary">{t.name}</p>
+                        <p className="text-xs text-text-muted">{t.role}</p>
+                      </div>
                     </div>
                   </div>
                 </ScrollReveal>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12 md:py-20">
+        <div className="container-premium">
+          <div className="max-w-3xl mx-auto">
+            <ScrollReveal>
+              <div className="rounded-xl border border-accent/20 bg-accent-muted/30 p-6 md:p-8 flex items-center gap-5">
+                <Avatar
+                  name={SITE.advisor}
+                  className="!w-16 !h-16 md:!w-20 md:!h-20 !text-xl md:!text-2xl shrink-0"
+                />
+                <div className="flex-1">
+                  <p className="text-xs font-medium tracking-widest uppercase text-accent mb-1">
+                    Tu asesor responsable
+                  </p>
+                  <p className="font-serif text-xl md:text-2xl font-semibold text-text-primary mb-1">
+                    {SITE.advisor}
+                  </p>
+                  <p className="text-sm text-text-secondary">
+                    Asesor fiscal con +10 años de experiencia. Yo personalmente reviso tu caso, te llamo y respondo a tus dudas. No es un departamento ni un becario.
+                  </p>
+                </div>
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -266,14 +294,6 @@ export function LandingTemplate({ data }: { data: LandingData }) {
         </div>
       </section>
 
-      {/* Sticky mobile CTA */}
-      {showSticky && (
-        <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-bg-primary/95 backdrop-blur-sm border-t border-border p-3 flex items-center justify-center gap-3">
-          <Button href="/aplicar" size="sm" trackAs="click_cta_primary" className="flex-1 max-w-xs">
-            Solicitar diagnóstico
-          </Button>
-        </div>
-      )}
     </>
   );
 }

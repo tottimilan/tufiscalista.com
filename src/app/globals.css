@@ -10,8 +10,8 @@
   --color-bg-secondary: #111827;
   --color-bg-tertiary: #1a2332;
   --color-text-primary: #F5F7FA;
-  --color-text-secondary: #A7B0BE;
-  --color-text-muted: #6B7A8D;
+  --color-text-secondary: #B6BFCE;
+  --color-text-muted: #8C97AB;
   --color-border: #253041;
   --color-border-light: #2d3a4d;
   --color-accent: #C8A977;
@@ -792,16 +792,61 @@ ol.step-list li::before {
   position: relative;
 }
 
+/*
+  Transición dark → light al inicio del bloque de lectura.
+  Paradas intermedias en tonos cálidos (mezcla del beige #FAFAF8 con el
+  azul muy oscuro #0B0F14) para evitar banding y eliminar el típico
+  paso por gris sucio que se nota en gradientes de alto contraste.
+*/
 .blog-reading-area::before {
   content: "";
   position: absolute;
-  top: -60px;
+  top: -120px;
   left: 0;
   right: 0;
-  height: 60px;
-  background: linear-gradient(to bottom, var(--color-bg-primary), #FAFAF8);
+  height: 120px;
+  background: linear-gradient(
+    to bottom,
+    #0B0F14 0%,
+    #14171c 22%,
+    #2a2922 48%,
+    #6e624c 72%,
+    #c9bea5 88%,
+    #FAFAF8 100%
+  );
   pointer-events: none;
+  z-index: 0;
 }
+
+/* Transición simétrica light → dark al final del bloque de lectura */
+.blog-reading-area::after {
+  content: "";
+  position: absolute;
+  bottom: -120px;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(
+    to bottom,
+    #FAFAF8 0%,
+    #c9bea5 12%,
+    #6e624c 28%,
+    #2a2922 52%,
+    #14171c 78%,
+    #0B0F14 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/*
+  Cuando dos secciones .blog-reading-area van seguidas (cuerpo + caja
+  de autor), ocultamos el gradiente de fin de la primera y el de inicio
+  de la segunda para que la zona clara se vea como un único bloque
+  continuo, sin franjas oscuras intermedias.
+*/
+.blog-reading-area:has(+ .blog-reading-area)::after { display: none; }
+.blog-reading-area + .blog-reading-area::before { display: none; }
 
 .blog-reading-area ::selection {
   background-color: #C8A97730;

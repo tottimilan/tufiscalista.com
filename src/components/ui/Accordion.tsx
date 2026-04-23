@@ -34,6 +34,9 @@ export function Accordion({ items, className }: AccordionProps) {
             <button
               onClick={() => setOpenIndex(isOpen ? null : i)}
               className="w-full flex items-center justify-between px-6 py-5 text-left cursor-pointer"
+              aria-expanded={isOpen}
+              aria-controls={`accordion-panel-${i}`}
+              id={`accordion-trigger-${i}`}
             >
               <span className="font-medium text-text-primary pr-4">
                 {item.question}
@@ -42,6 +45,7 @@ export function Accordion({ items, className }: AccordionProps) {
                 animate={{ rotate: isOpen ? 45 : 0 }}
                 transition={{ duration: 0.2 }}
                 className="text-accent text-xl shrink-0"
+                aria-hidden="true"
               >
                 +
               </motion.span>
@@ -54,6 +58,9 @@ export function Accordion({ items, className }: AccordionProps) {
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                   className="overflow-hidden"
+                  id={`accordion-panel-${i}`}
+                  role="region"
+                  aria-labelledby={`accordion-trigger-${i}`}
                 >
                   <p className="px-6 pb-5 text-text-secondary leading-relaxed">
                     {item.answer}

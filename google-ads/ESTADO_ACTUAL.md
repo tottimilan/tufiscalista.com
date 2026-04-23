@@ -1,5 +1,80 @@
 # Estado Actual — Google Ads Tu Fiscalista
-## Actualizado: 10 abril 2026 (sesión 3)
+## Actualizado: 23 abril 2026 (sesión 4 — primer informe + overhaul web)
+
+---
+
+## TAREA URGENTE: Crear Ad Group nuevo "AG4 Renta Autónomos" (campaña Renta)
+
+Acabamos de publicar la landing **`/asesoria-declaracion-renta-autonomos`** específica para la campaña de Renta (abril-junio = pico anual). Hay que crear un Ad Group dedicado para captar este tráfico.
+
+### Pasos en Google Ads
+
+1. Google Ads → Campañas → **TF | Search | Asesoría Fiscal**
+2. Click en **Grupos de anuncios** → **+** (nuevo grupo de anuncios)
+3. Nombre: `AG4 | Renta Autónomos`
+
+### Keywords a añadir
+
+**Concordancia exacta:**
+```
+[asesor declaración renta autónomos]
+[gestor renta autónomo]
+[hacer la renta autónomo]
+[asesoría fiscal renta autónomos]
+[declaración renta autónomo 2026]
+```
+
+**Concordancia de frase:**
+```
+"declaración renta autónomos"
+"asesor renta autónomo"
+"gestor renta autónomos"
+"hacer la renta autónomo"
+"renta 2026 autónomo"
+"asesoría renta autónomos"
+"renta autónomos online"
+```
+
+### RSA — Títulos (15, máx 30 caracteres)
+
+```
+Asesor Renta Autónomos 2026
+Tu Renta Hecha Por Expertos
+Declaración Renta Autónomo
+Maximiza Tus Deducciones
+Sin Sustos En Tu Renta
+Renta + Plan Fiscal 2026
+Asesor Que Conoce Tu Negocio
+Diagnóstico Renta Gratis
+Plazas Limitadas Campaña 26
+Antes Del 30 Junio
+Renta Autónomos: Profesional
+Sin Errores · Sin Sustos
+Tu Asesor Personal Renta
+Solo 20 Clientes al Año
+Tu Renta En Buenas Manos
+```
+
+### RSA — Descripciones (4, máx 90 caracteres)
+
+```
+Asesor experto en Renta autónomos. Maximizamos deducciones y planificamos 2026. Sin sustos.
+No es la app del banco. Es planificación real con un asesor que conoce tu negocio.
+Diagnóstico gratuito antes del 30 de junio. Solo 20 clientes al año, plazas limitadas.
+Tu Renta de autónomo, hecha por un asesor que la revisa, la optimiza y te llama.
+```
+
+**URL final:** `https://tufiscalista.com/asesoria-declaracion-renta-autonomos`
+**Ruta visible:** tufiscalista.com/renta/autonomos
+
+### Tras publicar el Ad Group
+
+- Pausar las búsquedas de "renta" en otros Ad Groups que estén canibalizando
+- Vigilar términos de búsqueda durante primeros 5 días
+- CPC esperado: 1-3 € (similar al resto de tu cuenta)
+- Conversión esperada: superior al promedio actual por intención muy alta y landing dedicada
+
+---
 
 ---
 

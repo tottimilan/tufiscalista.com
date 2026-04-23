@@ -2,86 +2,92 @@ import type { Metadata } from "next";
 import { LandingTemplate } from "@/components/sections/LandingTemplate";
 
 export const metadata: Metadata = {
-  title: "Cambiar de Gestoría | Cambio Fácil y Sin Riesgos | Tu Fiscalista",
+  title: "Cambiar de Gestoría Sin Riesgos | Traspaso en 7 Días | Tu Fiscalista",
   description:
-    "¿Descontento con tu gestoría actual? Cambiar de asesor fiscal es más sencillo de lo que crees. Te guiamos en todo el proceso y te acompañamos desde el primer día.",
+    "Cambia de gestoría en 7 días. Nos ocupamos del traspaso completo, sin perder un solo plazo, sin duplicar pagos. Tú solo firmas un documento. Diagnóstico gratuito.",
 };
 
 const data = {
   badge: "Cambiar de Asesoría",
   h1: (
     <>
-      Cambiar de asesoría puede ser <span className="text-gradient-gold">fácil</span>
+      Cambia de gestoría en{" "}
+      <span className="text-gradient-gold">7 días</span>, sin perder un solo plazo
     </>
   ),
   subtitle:
-    "Estás descontento con tu gestor o gestoría pero te da pereza o miedo cambiar. Nosotros nos encargamos del traspaso: te guiamos paso a paso y en pocos días estarás con un equipo que sí te escucha.",
+    "Tú solo firmas un documento. Nosotros nos encargamos de todo: comunicación con tu gestoría actual, recogida de documentación, alta en Hacienda y revisión de tu historial fiscal. Sin riesgo, sin estrés, sin permanencia.",
   pains: [
     {
-      title: "No te responden, te dan largas o no entienden tu caso",
-      desc: "Llevas semanas esperando una respuesta o te contestan con algo que no resuelve tu duda. Sientes que no eres prioritario y que tratan tu expediente como uno más del montón.",
+      title: "Llevas meses pensando en cambiar pero te da pereza el papeleo",
+      desc: "Sabes que tu gestoría no responde, no anticipa o cobra demás. Pero el cambio te suena a engorro. Buenas noticias: nosotros lo hacemos por ti. Tu trabajo se reduce a firmar un documento de cesión.",
     },
     {
-      title: "Te da miedo que el cambio complique las cosas o genere errores",
-      desc: "Temes que se pierda documentación, que caduquen plazos o que Hacienda reciba duplicados. La incertidumbre te hace seguir aguantando aunque no estés a gusto.",
+      title: "Te preocupa perder algún plazo o que se duplique alguna presentación",
+      desc: "Es la objeción nº1. Por eso planificamos el traspaso en función del calendario fiscal: si estamos cerca de un trimestre, coordinamos con tu gestoría actual para que no haya solapes. Cero plazos perdidos. Cero duplicados.",
     },
     {
-      title: "No sabes ni por dónde empezar a cambiar de gestor",
-      desc: "¿Qué hay que comunicar? ¿Quién avisa a Hacienda? ¿Cómo se pide la cesión de datos? El proceso parece enrevesado y prefieres no liarte.",
+      title: "Tu gestoría actual no quiere darte la documentación o no responde",
+      desc: "Por ley, tienen obligación de cederte tus libros, modelos presentados y documentación. Si se ponen en plan difícil, sabemos exactamente qué pasos seguir para forzar la entrega. No es la primera vez que lo hacemos.",
     },
     {
-      title: "Has probado varias gestorías y ninguna te convence",
-      desc: "Pasaste de una a otra buscando trato cercano, profesionalidad o precio justo. Ahora quieres alguien que de verdad te acompañe y no repetir la misma historia.",
+      title: "No sabes si vas a salir ganando con el cambio",
+      desc: "El primer mes con nosotros revisamos tu historial fiscal de los últimos años. Detectamos deducciones no aplicadas, errores históricos y oportunidades. La mayoría de clientes recupera el coste del primer trimestre solo con lo que detectamos en esta revisión.",
     },
   ],
   benefits: [
-    "Proceso de cambio guiado: te explicamos cada paso y los plazos a cumplir",
-    "Coordinación con tu gestoría actual para la cesión de documentación",
-    "Alta correcta en Hacienda y Seguridad Social sin duplicados ni errores",
-    "Revisión de tu situación desde el primer día: detectamos lo que se puede mejorar",
-    "Comunicación directa desde el minuto uno: sin esperas ni filtros",
-    "Sin permanencia: si no encajamos, puedes marcharte con total libertad",
+    "Traspaso gestionado por nosotros: tú solo firmas la cesión de datos",
+    "Coordinación con tu gestoría actual para no perder ningún plazo",
+    "Alta correcta en Hacienda y Seguridad Social en menos de 7 días",
+    "Revisión completa de tu historial fiscal: detectamos errores y oportunidades",
+    "Primer trimestre con seguimiento intensivo para que la transición sea limpia",
+    "Sin permanencia: si no encajamos, te puedes ir cuando quieras",
   ],
   method: [
     {
-      step: "Diagnóstico gratuito",
-      desc: "Contamos contigo qué nos gustaría revisar, cómo trabajamos y qué incluiría el cambio. Te explicamos el proceso de traspaso y resolvemos tus dudas. Sin compromiso.",
+      step: "Diagnóstico gratuito (día 0)",
+      desc: "Analizamos tu situación: tipo de actividad, facturación, gestoría actual y motivos del cambio. Te explicamos cómo trabajamos y te damos un presupuesto cerrado. Sin compromiso.",
     },
     {
-      step: "Solicitud de cesión y alta",
-      desc: "Si decides seguir, te guiamos para comunicar el cambio a tu gestoría actual y solicitamos la cesión de datos. Paralelamente damos el alta en Hacienda y Seguridad Social para que todo quede legalmente al día.",
+      step: "Firma de cesión y comunicación (día 1-2)",
+      desc: "Si decides seguir, firmas un documento de cesión. Nosotros nos comunicamos con tu gestoría actual para solicitar la documentación. Tú no tienes que hablar con nadie.",
     },
     {
-      step: "Recepción y arranque",
-      desc: "Cuando recibimos la documentación, la revisamos y te ponemos al día. En pocos días estarás operativo con nosotros y con la tranquilidad de que todo ha quedado bien cerrado.",
+      step: "Recepción y alta (día 3-5)",
+      desc: "Recibimos tu documentación, revisamos los últimos ejercicios para detectar mejoras, y te damos de alta como cliente nuestro. Coordinamos los plazos para que no haya solapes.",
+    },
+    {
+      step: "Operativos (día 7)",
+      desc: "Estás operativo con nosotros. Tienes asesor asignado, canal directo de comunicación y plan fiscal personalizado. Empezamos a trabajar como si lleváramos años contigo.",
     },
   ],
   faq: [
     {
-      question: "¿Cuánto tarda en hacerse el cambio de gestoría?",
+      question: "¿Cuánto tiempo tarda el traspaso?",
       answer:
-        "Depende de la colaboración de tu gestoría actual. Lo habitual es que en 1–3 semanas tengamos la documentación y estés dado de alta con nosotros. Nosotros aceleramos todo lo posible y te mantenemos informado.",
+        "En condiciones normales, 7 días desde que firmas la cesión. Si tu gestoría actual colabora rápido, podemos cerrarlo en 3-4 días. Si se demoran, te mantenemos informado en todo momento y aceleramos lo que podemos. Cero riesgo de plazos perdidos: lo coordinamos con el calendario fiscal.",
     },
     {
-      question: "¿Puedo cambiar en cualquier momento del año?",
+      question: "¿Tengo que hablar yo con mi gestoría actual?",
       answer:
-        "Sí. Puedes cambiar de gestoría en cualquier momento. Lo ideal es planificarlo para evitar coincidir con plazos críticos (por ejemplo, declaración de la renta o cierre anual), pero en general no hay restricciones.",
+        "No. Te encargas únicamente de firmar el documento de cesión que te enviamos. Nosotros nos comunicamos con tu gestoría actual, solicitamos la documentación y gestionamos toda la transición. Si quieres avisarles tú primero por cortesía, perfecto, pero no es necesario.",
     },
     {
-      question: "¿Mi gestoría actual puede negarse a ceder los datos?",
+      question: "¿Qué pasa con los impuestos que ya estaban presentados?",
       answer:
-        "No. Por normativa, tienen la obligación de ceder la documentación e información necesaria para la continuidad del servicio. Nosotros te guiamos en cómo solicitarlo y, si hace falta, en los pasos a seguir.",
+        "Los modelos ya presentados quedan tal cual están. Nosotros asumimos la gestión a partir del alta. Como parte de la revisión inicial, miramos los últimos 4 ejercicios por si detectamos errores u oportunidades de rectificación. Si las hay, te las planteamos antes de actuar.",
     },
     {
-      question: "¿Qué pasa con los impuestos que ya tengo presentados?",
+      question: "¿Y si mi gestoría actual no quiere darme la documentación?",
       answer:
-        "Los impuestos ya presentados quedan como están. Nosotros asumimos la gestión a partir del alta y nos encargamos de las siguientes obligaciones. Si detectamos algo en el historial que convenga revisar, te lo comentamos.",
+        "Por la Ley General Tributaria y el Código Deontológico, tienen obligación de cederte tu información. Si se resisten, te asesoramos en los pasos formales (requerimiento por escrito, etc.). En la práctica, la mayoría colabora en cuanto reciben la solicitud por escrito.",
     },
   ],
   relatedResources: [
-    { href: "/comparativa-boutique-vs-gestoria", title: "Boutique frente a gestoría tradicional", type: "guia" },
-    { href: "/blog/como-cambiar-de-asesoria", title: "Cómo cambiar de asesoría sin líos", type: "blog" },
-    { href: "/errores-frecuentes-autonomos", title: "Errores frecuentes de autónomos", type: "guia" },
+    { href: "/comparativa-boutique-vs-gestoria", title: "Boutique vs gestoría de volumen: la diferencia real", type: "guia" },
+    { href: "/blog/como-cambiar-de-asesoria", title: "Cómo cambiar de asesoría sin morir en el intento", type: "blog" },
+    { href: "/errores-frecuentes-autonomos", title: "Errores frecuentes de autónomos que la gestoría no detecta", type: "guia" },
+    { href: "/calculadora", title: "Calcula cuánto puedes ahorrar con un asesor proactivo", type: "guia" },
   ],
 };
 

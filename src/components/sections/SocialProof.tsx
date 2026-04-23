@@ -3,6 +3,7 @@
 import { TESTIMONIALS } from "@/lib/constants";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { Avatar } from "@/components/ui/Avatar";
 
 export function SocialProof() {
   const featured = TESTIMONIALS.slice(0, 3);
@@ -27,11 +28,14 @@ export function SocialProof() {
                 <blockquote className="text-text-secondary text-sm md:text-base leading-relaxed flex-1 mb-5 md:mb-6">
                   &ldquo;{t.quote}&rdquo;
                 </blockquote>
-                <div className="pt-4 border-t border-border">
-                  <p className="font-medium text-text-primary text-sm">
-                    {t.name}
-                  </p>
-                  <p className="text-text-muted text-xs mt-0.5">{t.role}</p>
+                <div className="pt-4 border-t border-border flex items-center gap-3">
+                  <Avatar name={t.name} size="md" />
+                  <div>
+                    <p className="font-medium text-text-primary text-sm">
+                      {t.name}
+                    </p>
+                    <p className="text-text-muted text-xs mt-0.5">{t.role}</p>
+                  </div>
                 </div>
               </div>
             </ScrollReveal>
@@ -49,11 +53,14 @@ export function SocialProof() {
                   <blockquote className="text-text-secondary text-sm leading-relaxed flex-1 mb-5">
                     &ldquo;{t.quote}&rdquo;
                   </blockquote>
-                  <div className="pt-4 border-t border-border">
-                    <p className="font-medium text-text-primary text-sm">
-                      {t.name}
-                    </p>
-                    <p className="text-text-muted text-xs mt-0.5">{t.role}</p>
+                  <div className="pt-4 border-t border-border flex items-center gap-3">
+                    <Avatar name={t.name} size="md" />
+                    <div>
+                      <p className="font-medium text-text-primary text-sm">
+                        {t.name}
+                      </p>
+                      <p className="text-text-muted text-xs mt-0.5">{t.role}</p>
+                    </div>
                   </div>
                 </div>
               </ScrollReveal>

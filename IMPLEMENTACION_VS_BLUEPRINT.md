@@ -2,6 +2,9 @@
 
 Referencia: `../arquitectura-web-asesoria-premium-1.md`
 
+> **Última actualización:** 23 abril 2026 — Conversion overhaul (post-análisis Google Ads).
+> Cambios incluidos: formulario en 2 pasos, teléfono visible (click-to-call), 2 landings nuevas de Renta, mejora landing /cambiar-de-asesoria, sticky CTA universal, exit intent específico /aplicar, schema ProfessionalService ampliado (telephone, geo, openingHours), MeetYourAdvisor section, Avatar en testimonios, Skip to content, ARIA labels, contraste WCAG mejorado, fonts optimizadas.
+
 ---
 
 ## Decisiones técnicas
@@ -33,14 +36,15 @@ Referencia: `../arquitectura-web-asesoria-premium-1.md`
 - `/calculadora` ✅ (Calculadora fiscal interactiva)
 - `/recursos` ✅ (Hub de contenidos con links a todas las secciones)
 
-### Landings BOFU — COMPLETO (7/7)
+### Landings BOFU — COMPLETO (8/8)
 - `/asesoria-fiscal-premium` ✅
 - `/gestoria-premium-autonomos` ✅
 - `/asesoria-premium-pymes` ✅
-- `/cambiar-de-asesoria` ✅
+- `/cambiar-de-asesoria` ✅ (rediseñada para mejor conversión, 23 abr)
 - `/asesor-fiscal-espana` ✅
 - `/asesoria-fiscal-para-autonomos` ✅
 - `/asesoria-fiscal-para-pymes` ✅
+- `/asesoria-declaracion-renta-autonomos` ✅ (NUEVO 23 abr — campaña Renta)
 
 ### Landings problema urgente — COMPLETO (4/4)
 - `/requerimientos-hacienda` ✅
@@ -48,7 +52,7 @@ Referencia: `../arquitectura-web-asesoria-premium-1.md`
 - `/notificaciones-hacienda` ✅
 - `/sanciones-fiscales` ✅
 
-### Landings TOFU — COMPLETO (8/8)
+### Landings TOFU — COMPLETO (9/9)
 - `/guia-factura-electronica` ✅
 - `/verifactu-que-es` ✅
 - `/gastos-deducibles-autonomos` ✅
@@ -57,6 +61,7 @@ Referencia: `../arquitectura-web-asesoria-premium-1.md`
 - `/calendario-fiscal` ✅
 - `/errores-frecuentes-autonomos` ✅
 - `/como-pagar-menos-impuestos-legalmente` ✅
+- `/declaracion-renta-2026` ✅ (NUEVO 23 abr — campaña Renta general)
 
 ### Páginas de confianza / soporte — COMPLETO
 - `/faq` ✅

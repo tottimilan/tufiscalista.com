@@ -26,6 +26,8 @@ export function ExitIntent() {
 
   useEffect(() => {
     if (sessionStorage.getItem(SESSION_KEY)) return;
+    // No mostrar el exit intent global en /aplicar (allí se usa ApplyExitIntent)
+    if (typeof window !== "undefined" && window.location.pathname.startsWith("/aplicar")) return;
 
     const timer = setTimeout(() => {
       document.documentElement.addEventListener("mouseleave", handleMouseLeave);

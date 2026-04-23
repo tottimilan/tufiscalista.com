@@ -5,10 +5,12 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NAV_LINKS, SITE, PLAZAS } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
+import { PhoneLink } from "@/components/ui/PhoneLink";
 import { cn } from "@/lib/utils";
 
 const RESOURCE_LINKS = {
   guias: [
+    { href: "/declaracion-renta-2026", label: "Renta 2026 (guía)" },
     { href: "/guia-factura-electronica", label: "Factura Electrónica" },
     { href: "/verifactu-que-es", label: "VeriFactu" },
     { href: "/gastos-deducibles-autonomos", label: "Gastos Deducibles" },
@@ -111,6 +113,11 @@ export function Header() {
           </nav>
 
           <div className="hidden lg:flex items-center gap-3">
+            <PhoneLink
+              source="header_desktop"
+              className="text-sm text-text-secondary hover:text-accent"
+              showLabel={true}
+            />
             <AnimatePresence>
               {scrolled && (
                 <motion.span
@@ -132,6 +139,14 @@ export function Header() {
               Aplicar a una plaza
             </Button>
           </div>
+
+          {/* Mobile click-to-call icon */}
+          <PhoneLink
+            source="header_mobile"
+            className="relative z-50 lg:hidden text-text-primary hover:text-accent p-2 -mr-1"
+            showLabel={false}
+            iconSize={22}
+          />
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -186,6 +201,7 @@ export function Header() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45 }}
+              className="flex flex-col items-center gap-3"
             >
               <Button
                 href="/aplicar"
@@ -195,6 +211,10 @@ export function Header() {
               >
                 Aplicar a una plaza
               </Button>
+              <PhoneLink
+                source="header_mobile_menu"
+                className="text-accent hover:text-accent-hover font-medium text-base mt-2"
+              />
             </motion.div>
           </motion.div>
         )}

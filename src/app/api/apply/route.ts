@@ -16,9 +16,10 @@ const applySchema = z.object({
   nombre: z.string().min(2).max(100),
   email: z.string().email().max(254),
   telefono: z.string().min(9).max(20),
-  tipo: z.enum(["autonomo", "pyme"]),
-  facturacion: z.string().min(1).max(100),
+  tipo: z.enum(["autonomo", "pyme"]).optional(),
+  facturacion: z.string().max(100).optional(),
   mensaje: z.string().max(5000).optional(),
+  _step: z.enum(["lead", "qualified"]).optional(),
   _t: z.number().optional(),
   _turnstile: z.string().optional(),
   website: z.string().max(0).optional(),
@@ -79,19 +80,24 @@ export async function POST(request: Request) {
     const email = escapeHtml(data.email);
     const telefono = escapeHtml(data.telefono);
     const tipo = data.tipo;
-    const facturacion = escapeHtml(data.facturacion);
+    const facturacion = data.facturacion ? escapeHtml(data.facturacion) : "";
     const mensaje = data.mensaje ? escapeHtml(data.mensaje) : "";
+    const isQualified = data._step === "qualified";
+    const stepLabel = isQualified ? "Lead cualificado (paso 2 completado)" : "Lead inicial (solo paso 1)";
 
     await resend.emails.send({
       from: "Tu Fiscalista <no-reply@tufiscalista.com>",
       to: "info@tufiscalista.com",
       replyTo: data.email,
-      subject: `Nueva solicitud: ${nombre} (${tipo})`,
+      subject: `${isQualified ? "[CUALIFICADO] " : "[NUEVO] "}${nombre}${tipo ? ` (${tipo})` : ""}`,
       html: `
         <div style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #C8A977; border-bottom: 1px solid #253041; padding-bottom: 12px;">
-            Nueva solicitud de plaza
+            ${isQualified ? "Solicitud cualificada" : "Solicitud recibida"}
           </h2>
+          <p style="font-size: 13px; color: #6B7A8D; margin: 0 0 16px;">
+            <strong>${stepLabel}</strong>
+          </p>
           <table style="width: 100%; border-collapse: collapse;">
             <tr>
               <td style="padding: 8px 0; color: #6B7A8D; width: 140px;">Nombre</td>
@@ -105,14 +111,18 @@ export async function POST(request: Request) {
               <td style="padding: 8px 0; color: #6B7A8D;">Teléfono</td>
               <td style="padding: 8px 0;"><a href="tel:${telefono}">${telefono}</a></td>
             </tr>
+            ${tipo ? `
             <tr>
               <td style="padding: 8px 0; color: #6B7A8D;">Tipo</td>
               <td style="padding: 8px 0;">${tipo === "autonomo" ? "Autónomo" : "Pyme / SL"}</td>
             </tr>
+            ` : ""}
+            ${facturacion ? `
             <tr>
               <td style="padding: 8px 0; color: #6B7A8D;">Facturación</td>
               <td style="padding: 8px 0;">${facturacion}</td>
             </tr>
+            ` : ""}
             ${mensaje ? `
             <tr>
               <td style="padding: 8px 0; color: #6B7A8D; vertical-align: top;">Mensaje</td>
@@ -126,6 +136,9 @@ export async function POST(request: Request) {
         </div>
       `,
     });
+
+    // Solo enviar email de confirmación al usuario en paso 1 (lead inicial)
+    if (!isQualified) {
 
     await resend.emails.send({
       from: "Tu Fiscalista <no-reply@tufiscalista.com>",
@@ -163,6 +176,7 @@ export async function POST(request: Request) {
         </div>
       `,
     });
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {

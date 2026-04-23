@@ -30,6 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/asesor-fiscal-espana",
     "/asesoria-fiscal-para-autonomos",
     "/asesoria-fiscal-para-pymes",
+    "/asesoria-declaracion-renta-autonomos",
   ];
 
   const urgentPages = [
@@ -48,6 +49,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/calendario-fiscal",
     "/errores-frecuentes-autonomos",
     "/como-pagar-menos-impuestos-legalmente",
+    "/declaracion-renta-2026",
   ];
 
   const legalPages = ["/politica-privacidad", "/aviso-legal"];

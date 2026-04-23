@@ -4,15 +4,20 @@ type EventName =
   | "click_cta_secondary"
   | "start_apply_form"
   | "submit_apply_form"
+  | "submit_apply_form_qualified"
   | "submit_contact_form"
   | "book_call"
   | "click_whatsapp"
+  | "click_phone"
   | "download_lead_magnet"
   | "scroll_50"
   | "scroll_90"
   | "compare_table_interaction"
   | "calculator_used"
-  | "exit_intent_shown";
+  | "exit_intent_shown"
+  | "exit_intent_apply_shown"
+  | "apply_form_field_focus"
+  | "apply_form_field_abandon";
 
 export function trackEvent(
   event: EventName,

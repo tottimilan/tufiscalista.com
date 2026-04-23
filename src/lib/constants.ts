@@ -5,6 +5,13 @@ export const SITE = {
   description:
     "Asesoría fiscal boutique para autónomos y pymes. Máximo 20 clientes. Planificación, seguimiento y criterio para tu negocio.",
   advisor: "Ali El Yemlahy",
+  // Teléfono móvil del asesor (formato internacional para tel: y display)
+  phone: "+34698249376",
+  phoneDisplay: "+34 698 249 376",
+  email: "info@tufiscalista.com",
+  hours: "Lun-Vie 9:00-18:00",
+  city: "Madrid",
+  country: "ES",
 } as const;
 
 export const PLAZAS = {

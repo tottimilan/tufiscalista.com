@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/Card";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { TrackedCalLink } from "@/components/ui/TrackedCalLink";
+import { PhoneLink } from "@/components/ui/PhoneLink";
 
 export const metadata: Metadata = {
   title: "Contacto",
@@ -15,23 +16,32 @@ export const metadata: Metadata = {
 
 const contactMethods = [
   {
+    title: "Llamada directa",
+    value: SITE.phoneDisplay,
+    href: `tel:${SITE.phone}`,
+    desc: `Lun-Vie 9:00-18:00. Atención directa con el asesor.`,
+    type: "phone" as const,
+  },
+  {
     title: "Email",
-    value: "info@tufiscalista.com",
-    href: "mailto:info@tufiscalista.com",
+    value: SITE.email,
+    href: `mailto:${SITE.email}`,
     desc: "Para consultas generales o enviar documentación.",
+    type: "email" as const,
   },
   {
     title: "Agendar reunión",
     value: "Reunión de 15 o 30 min",
     href: "https://cal.com/el-asesor-fiscal/30min",
     desc: "Elige un hueco en nuestra agenda y hablamos directamente.",
-    external: true,
+    type: "cal" as const,
   },
   {
     title: "Solicitar plaza",
     value: "Formulario de aplicación",
     href: "/aplicar",
     desc: "Si quieres trabajar con nosotros, empieza aquí.",
+    type: "internal" as const,
   },
 ];
 
@@ -54,53 +64,53 @@ export default function ContactoPage() {
       <section className="pb-20 md:pb-28">
         <div className="container-premium">
           <div className="max-w-2xl mx-auto space-y-6">
-            {contactMethods.map((method, i) => (
-              <ScrollReveal key={i} delay={i * 0.1}>
-                {"external" in method && method.external ? (
-                  <TrackedCalLink
-                    href={method.href}
-                    source="contacto_page"
-                    className="block"
-                  >
-                    <Card hover>
-                      <div className="flex items-start justify-between gap-4">
-                        <div>
-                          <p className="text-xs font-medium tracking-widest uppercase text-text-muted mb-2">
-                            {method.title}
-                          </p>
-                          <p className="font-serif text-xl font-semibold text-accent mb-1">
-                            {method.value}
-                          </p>
-                          <p className="text-sm text-text-secondary">
-                            {method.desc}
-                          </p>
-                        </div>
-                        <span className="text-accent text-xl mt-2">→</span>
-                      </div>
-                    </Card>
-                  </TrackedCalLink>
-                ) : (
-                  <a href={method.href} className="block">
-                    <Card hover>
-                      <div className="flex items-start justify-between gap-4">
-                        <div>
-                          <p className="text-xs font-medium tracking-widest uppercase text-text-muted mb-2">
-                            {method.title}
-                          </p>
-                          <p className="font-serif text-xl font-semibold text-accent mb-1">
-                            {method.value}
-                          </p>
-                          <p className="text-sm text-text-secondary">
-                            {method.desc}
-                          </p>
-                        </div>
-                        <span className="text-accent text-xl mt-2">→</span>
-                      </div>
-                    </Card>
-                  </a>
-                )}
-              </ScrollReveal>
-            ))}
+            {contactMethods.map((method, i) => {
+              const cardContent = (
+                <Card hover>
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <p className="text-xs font-medium tracking-widest uppercase text-text-muted mb-2">
+                        {method.title}
+                      </p>
+                      <p className="font-serif text-xl font-semibold text-accent mb-1">
+                        {method.value}
+                      </p>
+                      <p className="text-sm text-text-secondary">
+                        {method.desc}
+                      </p>
+                    </div>
+                    <span className="text-accent text-xl mt-2">→</span>
+                  </div>
+                </Card>
+              );
+
+              return (
+                <ScrollReveal key={i} delay={i * 0.1}>
+                  {method.type === "cal" ? (
+                    <TrackedCalLink
+                      href={method.href}
+                      source="contacto_page"
+                      className="block"
+                    >
+                      {cardContent}
+                    </TrackedCalLink>
+                  ) : method.type === "phone" ? (
+                    <PhoneLink
+                      source="contacto_page"
+                      showIcon={false}
+                      showLabel={false}
+                      className="block"
+                    >
+                      {cardContent}
+                    </PhoneLink>
+                  ) : (
+                    <a href={method.href} className="block">
+                      {cardContent}
+                    </a>
+                  )}
+                </ScrollReveal>
+              );
+            })}
           </div>
 
           <div className="max-w-2xl mx-auto mt-16">

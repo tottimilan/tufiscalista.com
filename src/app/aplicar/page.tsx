@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Badge } from "@/components/ui/Badge";
 import { ApplyForm } from "@/components/forms/ApplyForm";
 import { TrackedCalLink } from "@/components/ui/TrackedCalLink";
-import { PLAZAS } from "@/lib/constants";
+import { PhoneLink } from "@/components/ui/PhoneLink";
+import { ApplyExitIntent } from "@/components/ui/ApplyExitIntent";
+import { PLAZAS, SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Aplicar a una plaza",
@@ -35,9 +37,13 @@ export default function AplicarPage() {
 
           <div className="mt-8 rounded-xl border border-border bg-bg-secondary/30 p-6 text-center">
             <p className="text-sm text-text-secondary mb-4">
-              ¿Prefieres hablar directamente? Agenda una reunión:
+              ¿Prefieres hablar directamente?
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-4">
+              <PhoneLink
+                source="aplicar_phone"
+                className="inline-flex items-center gap-2 rounded-lg border border-accent/30 bg-accent-muted px-5 py-2.5 text-sm font-medium text-accent transition-all hover:bg-accent/10 hover:border-accent/50"
+              />
               <TrackedCalLink href="https://cal.com/el-asesor-fiscal/15min" source="aplicar_15min">
                 Reunión 15 min
               </TrackedCalLink>
@@ -48,15 +54,17 @@ export default function AplicarPage() {
             <p className="mt-3 text-xs text-text-muted">
               O escríbenos a{" "}
               <a
-                href="mailto:info@tufiscalista.com"
+                href={`mailto:${SITE.email}`}
                 className="text-accent hover:text-accent-hover transition-colors"
               >
-                info@tufiscalista.com
+                {SITE.email}
               </a>
             </p>
           </div>
         </div>
       </div>
+
+      <ApplyExitIntent />
     </section>
   );
 }

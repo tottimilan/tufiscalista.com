@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SITE } from "@/lib/constants";
+import { PhoneLink } from "@/components/ui/PhoneLink";
 
 const footerLinks = {
   servicio: [
@@ -15,6 +16,7 @@ const footerLinks = {
     { href: "/recursos", label: "Centro de Recursos" },
     { href: "/calculadora", label: "Calculadora Fiscal" },
     { href: "/calendario-fiscal", label: "Calendario Fiscal" },
+    { href: "/declaracion-renta-2026", label: "Renta 2026" },
     { href: "/gastos-deducibles-autonomos", label: "Gastos Deducibles" },
     { href: "/guia-factura-electronica", label: "Factura Electrónica" },
     { href: "/autonomo-vs-sl", label: "Autónomo vs SL" },
@@ -71,12 +73,19 @@ export function Footer() {
               Asesoría fiscal boutique. Máximo 20 clientes. Planificación,
               seguimiento y criterio para tu negocio.
             </p>
-            <a
-              href="mailto:info@tufiscalista.com"
-              className="mt-3 block text-sm text-text-muted hover:text-accent transition-colors"
-            >
-              info@tufiscalista.com
-            </a>
+            <div className="mt-3 space-y-1.5">
+              <PhoneLink
+                source="footer"
+                className="text-sm text-text-muted hover:text-accent"
+              />
+              <a
+                href={`mailto:${SITE.email}`}
+                className="block text-sm text-text-muted hover:text-accent transition-colors"
+              >
+                {SITE.email}
+              </a>
+              <p className="text-xs text-text-muted">{SITE.hours}</p>
+            </div>
           </div>
 
           <FooterColumn title="Servicio" links={footerLinks.servicio} />

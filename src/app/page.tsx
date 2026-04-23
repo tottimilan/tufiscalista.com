@@ -7,6 +7,7 @@ import { Problems } from "@/components/sections/Problems";
 import { Method } from "@/components/sections/Method";
 import { Comparison } from "@/components/sections/Comparison";
 import { SocialProof } from "@/components/sections/SocialProof";
+import { MeetYourAdvisor } from "@/components/sections/MeetYourAdvisor";
 import { ApplySection } from "@/components/sections/ApplySection";
 import { HomeFAQ } from "@/components/sections/HomeFAQ";
 
@@ -19,12 +20,13 @@ export default function HomePage() {
     <>
       <HeroHome />
       <ClientLogos />
+      <SocialProof />
       <ForWho />
       <ServiceGrid />
       <Problems />
       <Method />
       <Comparison />
-      <SocialProof />
+      <MeetYourAdvisor />
       <ApplySection />
       <HomeFAQ />
     </>
