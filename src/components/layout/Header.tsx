@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { SITE, PLAZAS } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
 import { PhoneLink } from "@/components/ui/PhoneLink";
+import { WhatsAppHeaderButton } from "@/components/ui/WhatsAppHeaderButton";
 import { cn } from "@/lib/utils";
 
 type MenuKey = "servicio" | "recursos" | "nosotros" | null;
@@ -293,13 +294,14 @@ export function Header() {
           </div>
 
           {/* Mobile right: phone icon + hamburger */}
-          <div className="flex items-center gap-1 lg:hidden">
+          <div className="flex items-center gap-1.5 lg:hidden">
             <PhoneLink
               source="header_mobile"
               className="relative z-50 text-text-primary hover:text-accent p-2"
               showLabel={false}
               iconSize={22}
             />
+            <WhatsAppHeaderButton source="header_mobile" />
 
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
