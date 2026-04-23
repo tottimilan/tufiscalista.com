@@ -6,10 +6,9 @@ import { Footer } from "@/components/layout/Footer";
 import { Analytics } from "@/components/tracking/Analytics";
 import { ScrollTracker } from "@/components/tracking/ScrollTracker";
 import { CookieBanner } from "@/components/ui/CookieBanner";
-import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import { MobileContactLayer } from "@/components/ui/MobileContactLayer";
 import { ExitIntent } from "@/components/ui/ExitIntent";
 import { LoadingBar } from "@/components/ui/LoadingBar";
-import { StickyMobileCTA } from "@/components/ui/StickyMobileCTA";
 import { SkipToContent } from "@/components/ui/SkipToContent";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
@@ -122,9 +121,8 @@ export default function RootLayout({
         <Header />
         <main id="main-content">{children}</main>
         <Footer />
-        <WhatsAppButton />
+        <MobileContactLayer />
         <ExitIntent />
-        <StickyMobileCTA />
         <CookieBanner />
         <Analytics />
         <ScrollTracker />
