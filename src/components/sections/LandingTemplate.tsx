@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
@@ -209,10 +210,16 @@ export function LandingTemplate({ data }: { data: LandingData }) {
           <div className="max-w-3xl mx-auto">
             <ScrollReveal>
               <div className="rounded-xl border border-accent/20 bg-accent-muted/30 p-6 md:p-8 flex items-center gap-5">
-                <Avatar
-                  name={SITE.advisor}
-                  className="!w-16 !h-16 md:!w-20 md:!h-20 !text-xl md:!text-2xl shrink-0"
-                />
+                <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-2 border-accent/30 shrink-0">
+                  <Image
+                    src="/ali.jpg"
+                    alt={`${SITE.advisor}, asesor fiscal`}
+                    fill
+                    sizes="80px"
+                    className="object-cover"
+                    quality={75}
+                  />
+                </div>
                 <div className="flex-1">
                   <p className="text-xs font-medium tracking-widest uppercase text-accent mb-1">
                     Tu asesor responsable

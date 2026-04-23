@@ -1,6 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
 import { SITE } from "@/lib/constants";
-import { Avatar } from "@/components/ui/Avatar";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { TrackedCalLink } from "@/components/ui/TrackedCalLink";
 import { PhoneLink } from "@/components/ui/PhoneLink";
@@ -23,12 +23,19 @@ export function MeetYourAdvisor() {
 
           <ScrollReveal delay={0.1}>
             <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 md:gap-12 items-center md:items-start">
-              {/* Avatar grande */}
+              {/* Foto del asesor */}
               <div className="flex justify-center md:justify-end">
-                <Avatar
-                  name={SITE.advisor}
-                  className="!w-32 !h-32 md:!w-40 md:!h-40 !text-4xl md:!text-5xl border-2"
-                />
+                <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-2 border-accent/30 shadow-lg shadow-accent/10">
+                  <Image
+                    src="/ali.jpg"
+                    alt={`${SITE.advisor}, asesor fiscal y fundador de ${SITE.name}`}
+                    fill
+                    sizes="(max-width: 768px) 128px, 160px"
+                    className="object-cover"
+                    priority={false}
+                    quality={80}
+                  />
+                </div>
               </div>
 
               {/* Info */}

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPostBySlug, getAllSlugs, getRelatedPosts, formatDate } from "@/lib/blog";
@@ -187,8 +188,15 @@ export default async function BlogPostPage({ params }: Props) {
       <section className="blog-reading-area pb-16 md:pb-20">
         <div className="container-premium max-w-3xl mx-auto">
           <div className="flex items-start gap-4 p-6 rounded-xl border border-[#e0dcd4] bg-[#f7f5f0]">
-            <div className="w-12 h-12 rounded-full bg-[#C8A977] flex items-center justify-center text-white font-serif font-bold text-lg shrink-0">
-              A
+            <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-[#C8A977]/30 shrink-0">
+              <Image
+                src="/ali.jpg"
+                alt={`${SITE.advisor}, asesor fiscal`}
+                fill
+                sizes="56px"
+                className="object-cover"
+                quality={75}
+              />
             </div>
             <div>
               <p className="font-semibold text-[#1a1a1a]">{SITE.advisor}</p>
