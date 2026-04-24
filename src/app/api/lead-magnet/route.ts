@@ -63,7 +63,7 @@ export async function POST(request: Request) {
 
   try {
     await resend.emails.send({
-      from: `Tu Fiscalista <${process.env.EMAIL_FROM ?? "noreply@tufiscalista.com"}>`,
+      from: `Tu Fiscalista <${process.env.EMAIL_FROM ?? "onboarding@resend.dev"}>`,
       to: email,
       subject: `Tu recurso: ${magnet.name}`,
       html: `

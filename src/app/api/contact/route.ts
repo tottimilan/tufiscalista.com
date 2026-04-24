@@ -12,6 +12,10 @@ import {
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? "soyelasesorfiscal@gmail.com";
+const EMAIL_FROM = process.env.EMAIL_FROM ?? "onboarding@resend.dev";
+const FROM_HEADER = `Tu Fiscalista <${EMAIL_FROM}>`;
+
 const contactSchema = z.object({
   nombre: z.string().min(2).max(100),
   email: z.string().email().max(254),
@@ -76,9 +80,9 @@ export async function POST(request: Request) {
     const email = escapeHtml(body.email);
     const mensaje = escapeHtml(body.mensaje);
 
-    await resend.emails.send({
-      from: "Tu Fiscalista <no-reply@tufiscalista.com>",
-      to: "info@tufiscalista.com",
+    const result = await resend.emails.send({
+      from: FROM_HEADER,
+      to: CONTACT_EMAIL,
       replyTo: body.email,
       subject: `Mensaje de contacto: ${nombre}`,
       html: `
@@ -105,6 +109,14 @@ export async function POST(request: Request) {
         </div>
       `,
     });
+
+    if (result.error) {
+      console.error("Resend contact error:", result.error);
+      return NextResponse.json(
+        { error: "No se pudo enviar el mensaje" },
+        { status: 502 }
+      );
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {

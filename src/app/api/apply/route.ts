@@ -12,6 +12,10 @@ import {
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? "soyelasesorfiscal@gmail.com";
+const EMAIL_FROM = process.env.EMAIL_FROM ?? "onboarding@resend.dev";
+const FROM_HEADER = `Tu Fiscalista <${EMAIL_FROM}>`;
+
 const applySchema = z.object({
   nombre: z.string().min(2).max(100),
   email: z.string().email().max(254),
@@ -85,9 +89,9 @@ export async function POST(request: Request) {
     const isQualified = data._step === "qualified";
     const stepLabel = isQualified ? "Lead cualificado (paso 2 completado)" : "Lead inicial (solo paso 1)";
 
-    await resend.emails.send({
-      from: "Tu Fiscalista <no-reply@tufiscalista.com>",
-      to: "info@tufiscalista.com",
+    const notifyResult = await resend.emails.send({
+      from: FROM_HEADER,
+      to: CONTACT_EMAIL,
       replyTo: data.email,
       subject: `${isQualified ? "[CUALIFICADO] " : "[NUEVO] "}${nombre}${tipo ? ` (${tipo})` : ""}`,
       html: `
@@ -137,11 +141,19 @@ export async function POST(request: Request) {
       `,
     });
 
+    if (notifyResult.error) {
+      console.error("Resend notify error:", notifyResult.error);
+      return NextResponse.json(
+        { error: "No se pudo enviar la notificación" },
+        { status: 502 }
+      );
+    }
+
     // Solo enviar email de confirmación al usuario en paso 1 (lead inicial)
     if (!isQualified) {
 
-    await resend.emails.send({
-      from: "Tu Fiscalista <no-reply@tufiscalista.com>",
+    const ackResult = await resend.emails.send({
+      from: FROM_HEADER,
       to: data.email,
       subject: "Hemos recibido tu solicitud — Tu Fiscalista",
       html: `
@@ -176,6 +188,10 @@ export async function POST(request: Request) {
         </div>
       `,
     });
+
+    if (ackResult.error) {
+      console.error("Resend ack error:", ackResult.error);
+    }
     }
 
     return NextResponse.json({ success: true });
