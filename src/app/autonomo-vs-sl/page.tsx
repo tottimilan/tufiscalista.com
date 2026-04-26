@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     "constituir SL",
     "comparativa fiscal",
   ],
+  alternates: { canonical: "/autonomo-vs-sl" },
 };
 
 const data = {

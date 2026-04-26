@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Testimonios de Clientes | Tu Fiscalista",
   description:
     "Lo que dicen nuestros clientes sobre nuestra asesoría fiscal boutique. Resultados reales, opiniones verificadas.",
+  alternates: { canonical: "/testimonios" },
 };
 
 export default function TestimoniosPage() {

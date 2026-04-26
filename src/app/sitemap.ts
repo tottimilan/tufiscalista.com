@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/constants";
 import { blogPosts } from "@/lib/blog";
+import { getRouteDate } from "@/lib/route-dates";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = SITE.url;
@@ -56,7 +57,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const blogPages = blogPosts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.date),
+    lastModified: new Date(post.dateModified ?? post.date),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
@@ -64,32 +65,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...corePages.map((path) => ({
       url: `${baseUrl}${path}`,
-      lastModified: new Date(),
+      lastModified: getRouteDate(path),
       changeFrequency: "weekly" as const,
       priority: path === "" ? 1.0 : 0.8,
     })),
     ...bofuPages.map((path) => ({
       url: `${baseUrl}${path}`,
-      lastModified: new Date(),
+      lastModified: getRouteDate(path),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
     ...urgentPages.map((path) => ({
       url: `${baseUrl}${path}`,
-      lastModified: new Date(),
+      lastModified: getRouteDate(path),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
     ...tofuPages.map((path) => ({
       url: `${baseUrl}${path}`,
-      lastModified: new Date(),
+      lastModified: getRouteDate(path),
       changeFrequency: "monthly" as const,
       priority: 0.6,
     })),
     ...blogPages,
     ...legalPages.map((path) => ({
       url: `${baseUrl}${path}`,
-      lastModified: new Date(),
+      lastModified: getRouteDate(path),
       changeFrequency: "yearly" as const,
       priority: 0.3,
     })),

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { serif, sans } from "@/lib/fonts";
 import { SITE } from "@/lib/constants";
+import { jsonLd } from "@/lib/seo";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Analytics } from "@/components/tracking/Analytics";
@@ -14,6 +15,8 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
 import "./globals.css";
 
+const OG_IMAGE = `${SITE.url}/opengraph-image`;
+
 export const metadata: Metadata = {
   title: {
     default: `${SITE.name} — Asesoría Fiscal Boutique`,
@@ -21,6 +24,16 @@ export const metadata: Metadata = {
   },
   description: SITE.description,
   metadataBase: new URL(SITE.url),
+  applicationName: SITE.name,
+  authors: [{ name: SITE.advisor, url: `${SITE.url}/sobre-nosotros` }],
+  creator: SITE.advisor,
+  publisher: SITE.name,
+  category: "finance",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   openGraph: {
     type: "website",
     locale: "es_ES",
@@ -28,32 +41,48 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     title: `${SITE.name} — Asesoría Fiscal Boutique`,
     description: SITE.description,
-    images: [{ url: "/og-default.png", width: 1200, height: 630, alt: SITE.name }],
+    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: SITE.name }],
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE.name} — Asesoría Fiscal Boutique`,
     description: SITE.description,
-    images: ["/og-default.png"],
+    images: [OG_IMAGE],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  icons: {
+    icon: "/icon.svg",
   },
 };
 
-function ProfessionalServiceSchema() {
-  const schema = {
+function GlobalSchemas() {
+  const organization = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "@id": `${SITE.url}#organization`,
     name: SITE.name,
+    legalName: SITE.name,
     url: SITE.url,
     description: SITE.description,
     telephone: SITE.phone,
     email: SITE.email,
-    image: `${SITE.url}/og-default.png`,
-    logo: `${SITE.url}/og-default.png`,
+    image: OG_IMAGE,
+    logo: {
+      "@type": "ImageObject",
+      url: OG_IMAGE,
+      width: 1200,
+      height: 630,
+    },
     areaServed: {
       "@type": "Country",
       name: "España",
@@ -61,6 +90,7 @@ function ProfessionalServiceSchema() {
     address: {
       "@type": "PostalAddress",
       addressLocality: SITE.city,
+      addressRegion: "Madrid",
       addressCountry: SITE.country,
     },
     geo: {
@@ -91,15 +121,60 @@ function ProfessionalServiceSchema() {
       contactType: "customer service",
       areaServed: "ES",
       availableLanguage: ["Spanish"],
-      contactOption: "TollFree",
+    },
+    founder: { "@id": `${SITE.url}/sobre-nosotros#person` },
+    employee: { "@id": `${SITE.url}/sobre-nosotros#person` },
+  };
+
+  const person = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${SITE.url}/sobre-nosotros#person`,
+    name: SITE.advisor,
+    url: `${SITE.url}/sobre-nosotros`,
+    image: `${SITE.url}/ali.jpg`,
+    jobTitle: "Asesor Fiscal y Fundador",
+    worksFor: { "@id": `${SITE.url}#organization` },
+    knowsAbout: [
+      "Fiscalidad",
+      "IRPF",
+      "IVA",
+      "Impuesto de Sociedades",
+      "Contabilidad",
+      "Planificación fiscal",
+      "Fiscalidad de no residentes",
+      "Asesoría para autónomos",
+      "Asesoría para pymes",
+    ],
+    knowsLanguage: ["Spanish", "English"],
+    nationality: { "@type": "Country", name: "España" },
+  };
+
+  const website = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${SITE.url}#website`,
+    url: SITE.url,
+    name: SITE.name,
+    description: SITE.description,
+    inLanguage: "es-ES",
+    publisher: { "@id": `${SITE.url}#organization` },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${SITE.url}/blog?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
     },
   };
 
   return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(organization)} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(person)} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(website)} />
+    </>
   );
 }
 
@@ -111,9 +186,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${serif.variable} ${sans.variable}`}>
       <head>
-        <ProfessionalServiceSchema />
-        <link rel="alternate" hrefLang="es-ES" href={SITE.url} />
-        <link rel="alternate" hrefLang="x-default" href={SITE.url} />
+        <GlobalSchemas />
       </head>
       <body className="font-sans antialiased">
         <SkipToContent />

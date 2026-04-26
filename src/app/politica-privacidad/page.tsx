@@ -4,6 +4,7 @@ import { SITE } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "Política de Privacidad",
   description: "Política de privacidad y protección de datos de Tu Fiscalista.",
+  alternates: { canonical: "/politica-privacidad" },
 };
 
 export default function PoliticaPrivacidadPage() {

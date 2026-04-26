@@ -11,6 +11,7 @@ export function Analytics() {
   const [allowed, setAllowed] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- lectura cliente-only de cookie consent
     setAllowed(getCookieConsent() === "accepted");
   }, []);
 

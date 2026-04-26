@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Blog",
   description:
     "Artículos sobre fiscalidad, deducciones, planificación y todo lo que necesitas saber para gestionar tu negocio en España.",
+  alternates: { canonical: "/blog" },
 };
 
 export default function BlogPage() {

@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Gestoría Premium para Autónomos | Asesoría que Entiende tu Día a Día",
   description:
     "Gestoría premium para autónomos: trato cercano, optimización fiscal real y respuestas cuando las necesitas. Deja de sentirte un número y empieza a tener un socio fiscal de verdad.",
+  alternates: { canonical: "/gestoria-premium-autonomos" },
 };
 
 const data = {

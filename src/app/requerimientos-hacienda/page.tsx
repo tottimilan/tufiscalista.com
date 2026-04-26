@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     "alegaciones Hacienda",
     "carta Hacienda",
   ],
+  alternates: { canonical: "/requerimientos-hacienda" },
 };
 
 const data = {

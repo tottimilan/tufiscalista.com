@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     "buzón electrónico Hacienda",
     "DEHú",
   ],
+  alternates: { canonical: "/notificaciones-hacienda" },
 };
 
 const data = {

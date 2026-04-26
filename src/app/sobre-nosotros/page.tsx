@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Sobre nosotros",
   description:
     "Conoce a Tu Fiscalista. Asesoría fiscal boutique con un modelo diferente: máximo 20 clientes, atención real.",
+  alternates: { canonical: "/sobre-nosotros" },
 };
 
 const values = [

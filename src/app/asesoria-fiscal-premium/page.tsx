@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Asesoría Fiscal Premium | Tu Fiscalista de Confianza",
   description:
     "Asesoría fiscal premium con trato personalizado, gestión proactiva y visión estratégica. Deja atrás la gestoría tradicional y trabaja con expertos que entienden tu negocio.",
+  alternates: { canonical: "/asesoria-fiscal-premium" },
 };
 
 const data = {

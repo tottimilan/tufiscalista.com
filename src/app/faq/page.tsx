@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { FAQ_ITEMS, SITE } from "@/lib/constants";
+import { FAQ_ITEMS } from "@/lib/constants";
 import { Accordion } from "@/components/ui/Accordion";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Preguntas frecuentes",
   description:
     "Resolvemos tus dudas sobre el servicio premium de Tu Fiscalista. Qué incluye, permanencia, precios y más.",
+  alternates: { canonical: "/faq" },
 };
 
 const extraFAQ = [

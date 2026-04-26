@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Precio",
   description:
     "Plan premium de asesoría fiscal boutique. Descubre qué incluye y solicita tu diagnóstico gratuito.",
+  alternates: { canonical: "/precio" },
 };
 
 export default function PrecioPage() {

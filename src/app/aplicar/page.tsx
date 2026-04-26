@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Aplicar a una plaza",
   description:
     "Solicita tu diagnóstico fiscal gratuito. Solo 20 plazas disponibles para asesoría fiscal premium.",
+  alternates: { canonical: "/aplicar" },
 };
 
 export default function AplicarPage() {

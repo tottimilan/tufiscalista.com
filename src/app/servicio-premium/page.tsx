@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Servicio Premium",
   description:
     "Asesoría fiscal integral para autónomos y pymes. Fiscalidad, contabilidad, asesoramiento a extranjeros, legal y seguimiento estratégico.",
+  alternates: { canonical: "/servicio-premium" },
 };
 
 export default function ServicioPremiumPage() {

@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     "fechas Hacienda",
     "modelos tributarios",
   ],
+  alternates: { canonical: "/calendario-fiscal" },
 };
 
 const data = {

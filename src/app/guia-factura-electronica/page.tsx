@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     "software facturación",
     "Ley Crea y Crece",
   ],
+  alternates: { canonical: "/guia-factura-electronica" },
 };
 
 const data = {

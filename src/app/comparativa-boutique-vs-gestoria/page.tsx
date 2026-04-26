@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Asesoría Boutique vs. Gestoría de Volumen | Comparativa",
   description:
     "Compara punto a punto una asesoría fiscal boutique con una gestoría de volumen: clientes, respuesta, proactividad, servicio y precio.",
+  alternates: { canonical: "/comparativa-boutique-vs-gestoria" },
 };
 
 const idealProfiles = [

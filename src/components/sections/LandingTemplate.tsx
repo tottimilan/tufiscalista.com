@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/Badge";
@@ -12,6 +13,7 @@ import { PhoneLink } from "@/components/ui/PhoneLink";
 import { Avatar } from "@/components/ui/Avatar";
 import { trackEvent } from "@/lib/tracking";
 import { TESTIMONIALS, PLAZAS, SITE } from "@/lib/constants";
+import { breadcrumbSchema, jsonLd } from "@/lib/seo";
 
 interface RelatedResource {
   href: string;
@@ -22,6 +24,8 @@ interface RelatedResource {
 interface LandingData {
   badge: string;
   h1: React.ReactNode;
+  /** Texto plano del título de la página, usado para BreadcrumbList. */
+  pageTitle?: string;
   subtitle: string;
   pains: { title: string; desc: string }[];
   benefits: string[];
@@ -30,8 +34,63 @@ interface LandingData {
   relatedResources?: RelatedResource[];
 }
 
+function prettyFromSlug(slug: string): string {
+  return slug
+    .split("-")
+    .map((w, i) => (i === 0 ? w[0].toUpperCase() + w.slice(1) : w))
+    .join(" ");
+}
+
+function LandingSchemas({ data, pathname }: { data: LandingData; pathname: string }) {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: data.faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
+  const slug = pathname.replace(/^\//, "").replace(/\/$/, "");
+  const name = data.pageTitle ?? (slug ? prettyFromSlug(slug) : "Inicio");
+  const url = `${SITE.url}${pathname}`;
+
+  const breadcrumb = breadcrumbSchema([
+    { name: "Inicio", url: "/" },
+    { name },
+  ]);
+
+  const service = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name,
+    description: data.subtitle,
+    url,
+    provider: { "@id": `${SITE.url}#organization` },
+    areaServed: { "@type": "Country", name: "España" },
+    serviceType: "Asesoría fiscal",
+    offers: {
+      "@type": "Offer",
+      url,
+      priceCurrency: "EUR",
+      availability: "https://schema.org/InStock",
+      seller: { "@id": `${SITE.url}#organization` },
+    },
+  };
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(faqSchema)} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(breadcrumb)} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(service)} />
+    </>
+  );
+}
+
 export function LandingTemplate({ data }: { data: LandingData }) {
   const tracked = useRef(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     if (!tracked.current) {
@@ -44,6 +103,7 @@ export function LandingTemplate({ data }: { data: LandingData }) {
 
   return (
     <>
+      <LandingSchemas data={data} pathname={pathname} />
       <section className="pt-28 pb-14 md:pt-40 md:pb-28">
         <div className="container-premium text-center">
           <Badge variant="gold">{data.badge}</Badge>

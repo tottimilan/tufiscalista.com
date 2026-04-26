@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: "Contacto",
   description:
     "Ponte en contacto con Tu Fiscalista. Email, teléfono y formulario de solicitud.",
+  alternates: { canonical: "/contacto" },
 };
 
 const contactMethods = [

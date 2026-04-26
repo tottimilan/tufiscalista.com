@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Accordion } from "@/components/ui/Accordion";
@@ -9,9 +10,15 @@ import { BlogCTA } from "@/components/ui/BlogCTA";
 import { trackEvent } from "@/lib/tracking";
 import Link from "next/link";
 
+import { breadcrumbSchema, jsonLd } from "@/lib/seo";
+
 interface TOFUData {
   badge: string;
   h1: React.ReactNode;
+  /** Texto plano del H1 para usarlo en breadcrumbs/schema. Si no se pasa, no se genera breadcrumb. */
+  pageTitle?: string;
+  /** Path absoluto de la página, p.ej. "/declaracion-renta-2026". Necesario para breadcrumbs. */
+  path?: string;
   subtitle: string;
   intro: string;
   sections: { title: string; content: string }[];
@@ -35,16 +42,31 @@ function FAQSchema({ faq }: { faq: { question: string; answer: string }[] }) {
     })),
   };
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
+  return <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(schema)} />;
+}
+
+function prettyFromSlug(slug: string): string {
+  if (!slug) return "Inicio";
+  return slug
+    .split("-")
+    .map((w, i) => (i === 0 && w ? w[0].toUpperCase() + w.slice(1) : w))
+    .join(" ");
+}
+
+function BreadcrumbSchema({ name }: { name: string }) {
+  const schema = breadcrumbSchema([
+    { name: "Inicio", url: "/" },
+    { name },
+  ]);
+  return <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(schema)} />;
 }
 
 export function TOFUTemplate({ data }: { data: TOFUData }) {
   const tracked = useRef(false);
+  const pathname = usePathname();
+  const slug = pathname.replace(/^\//, "").replace(/\/$/, "");
+  const breadcrumbName = data.pageTitle ?? prettyFromSlug(slug);
+
   useEffect(() => {
     if (!tracked.current) {
       tracked.current = true;
@@ -60,6 +82,7 @@ export function TOFUTemplate({ data }: { data: TOFUData }) {
   return (
     <>
       <FAQSchema faq={data.faq} />
+      <BreadcrumbSchema name={breadcrumbName} />
 
       <section className="pt-28 pb-14 md:pt-40 md:pb-20">
         <div className="container-premium text-center">

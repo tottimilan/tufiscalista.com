@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     "multas Hacienda autónomos",
     "errores IVA",
   ],
+  alternates: { canonical: "/errores-frecuentes-autonomos" },
 };
 
 const data = {

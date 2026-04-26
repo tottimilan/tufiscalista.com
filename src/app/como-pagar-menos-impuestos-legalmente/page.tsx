@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     "optimización fiscal",
     "reducir impuestos autónomos",
   ],
+  alternates: { canonical: "/como-pagar-menos-impuestos-legalmente" },
 };
 
 const data = {

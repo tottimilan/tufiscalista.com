@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Asesoría Fiscal para Autónomos | Gestión y Planificación Fiscal",
   description:
     "Asesoría fiscal para autónomos con seguimiento proactivo y planificación tributaria. Deja de perder tiempo con modelos trimestrales y optimiza tu fiscalidad con un equipo que entiende tu día a día.",
+  alternates: { canonical: "/asesoria-fiscal-para-autonomos" },
 };
 
 const data = {

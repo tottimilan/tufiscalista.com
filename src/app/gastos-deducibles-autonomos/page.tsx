@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     "IRPF autónomos",
     "gastos deducibles 2026",
   ],
+  alternates: { canonical: "/gastos-deducibles-autonomos" },
 };
 
 const data = {

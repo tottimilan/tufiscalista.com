@@ -17,6 +17,7 @@ export function CookieBanner() {
 
   useEffect(() => {
     const consent = localStorage.getItem(COOKIE_KEY);
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- lectura cliente-only de localStorage
     if (!consent) setShow(true);
   }, []);
 

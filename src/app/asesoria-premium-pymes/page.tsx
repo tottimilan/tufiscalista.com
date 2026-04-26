@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Asesoría Premium para Pymes | Tu Socio Fiscal Estratégico",
   description:
     "Asesoría fiscal premium para pymes: planificación tributaria, optimización de estructura y acompañamiento en cada decisión. Un socio fiscal que piensa contigo, no solo te cumple.",
+  alternates: { canonical: "/asesoria-premium-pymes" },
 };
 
 const data = {

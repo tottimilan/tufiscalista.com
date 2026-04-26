@@ -4,6 +4,7 @@ import { SITE } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "Aviso Legal",
   description: "Aviso legal y condiciones de uso de Tu Fiscalista.",
+  alternates: { canonical: "/aviso-legal" },
 };
 
 export default function AvisoLegalPage() {

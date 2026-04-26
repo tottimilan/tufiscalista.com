@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { SceneFallback } from "./SceneFallback";
 import { PremiumHeroCanvas } from "./PremiumHeroCanvas";
 
 export function HeroBackground() {
@@ -13,6 +12,7 @@ export function HeroBackground() {
     ).matches;
 
     if (prefersReduced) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- lectura cliente-only de matchMedia
     setCanAnimate(true);
   }, []);
 

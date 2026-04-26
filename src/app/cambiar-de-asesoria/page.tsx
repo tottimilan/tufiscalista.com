@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Cambiar de Gestoría Sin Riesgos | Traspaso en 7 Días | Tu Fiscalista",
   description:
     "Cambia de gestoría en 7 días. Nos ocupamos del traspaso completo, sin perder un solo plazo, sin duplicar pagos. Tú solo firmas un documento. Diagnóstico gratuito.",
+  alternates: { canonical: "/cambiar-de-asesoria" },
 };
 
 const data = {

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
@@ -8,6 +7,7 @@ export const metadata: Metadata = {
   title: "Cómo trabajamos",
   description:
     "Nuestro método en 3 pasos: diagnóstico, plan y estructura, seguimiento y mejora continua.",
+  alternates: { canonical: "/como-trabajamos" },
 };
 
 const steps = [

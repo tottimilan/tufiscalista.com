@@ -73,6 +73,7 @@ export function MobileContactLayer() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     const path = window.location.pathname;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- detección de ruta cliente-only
     setHideMobile(HIDE_ON_PATHS.some((p) => path.startsWith(p)));
 
     const onScroll = () => setScrolled(window.scrollY > SHOW_STICKY_AFTER_PX);

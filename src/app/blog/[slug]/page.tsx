@@ -11,6 +11,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { ReadingProgress } from "@/components/blog/ReadingProgress";
 import { TableOfContents } from "@/components/blog/TableOfContents";
 import { SITE } from "@/lib/constants";
+import { articleSchema, breadcrumbSchema, jsonLd } from "@/lib/seo";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -25,52 +26,34 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPostBySlug(slug);
   if (!post) return {};
 
+  const url = `${SITE.url}/blog/${slug}`;
+  const ogImage = `${url}/opengraph-image`;
+
   return {
     title: post.title,
     description: post.excerpt,
-    keywords: post.tags,
     alternates: { canonical: `/blog/${slug}` },
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: "article",
       publishedTime: post.date,
+      modifiedTime: post.dateModified ?? post.date,
       authors: [SITE.advisor],
-      url: `${SITE.url}/blog/${slug}`,
+      url,
+      siteName: SITE.name,
+      locale: "es_ES",
+      images: [{ url: ogImage, width: 1200, height: 630, alt: post.title }],
+      tags: post.tags,
+      section: post.category,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: [ogImage],
     },
   };
-}
-
-function ArticleSchema({ post }: { post: NonNullable<ReturnType<typeof getPostBySlug>> }) {
-  const url = `${SITE.url}/blog/${post.slug}`;
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: post.title,
-    description: post.excerpt,
-    datePublished: post.date,
-    dateModified: post.date,
-    url,
-    mainEntityOfPage: { "@type": "WebPage", "@id": url },
-    author: {
-      "@type": "Person",
-      name: SITE.advisor,
-      url: `${SITE.url}/sobre-nosotros`,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: SITE.name,
-      url: SITE.url,
-      logo: { "@type": "ImageObject", url: `${SITE.url}/og-default.png` },
-    },
-  };
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
 }
 
 function extractToc(content: string) {
@@ -138,9 +121,17 @@ export default async function BlogPostPage({ params }: Props) {
   const related = getRelatedPosts(slug, 3);
   const toc = extractToc(post.content);
 
+  const article = articleSchema(post);
+  const breadcrumbs = breadcrumbSchema([
+    { name: "Inicio", url: "/" },
+    { name: "Blog", url: "/blog" },
+    { name: post.title },
+  ]);
+
   return (
     <>
-      <ArticleSchema post={post} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(article)} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(breadcrumbs)} />
       <ReadingProgress />
 
       <article>

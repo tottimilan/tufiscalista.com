@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Asesor Fiscal España | Asesoría Fiscal Online España de Confianza",
   description:
     "Encuentra a tu asesor fiscal en España. Asesoría fiscal online profesional con trato cercano, planificación estratégica y seguimiento proactivo. Para particulares y negocios en toda España.",
+  alternates: { canonical: "/asesor-fiscal-espana" },
 };
 
 const data = {

@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     "sistema VeriFactu",
     "reglamento facturación",
   ],
+  alternates: { canonical: "/verifactu-que-es" },
 };
 
 const data = {

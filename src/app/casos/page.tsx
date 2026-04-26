@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Casos de éxito",
   description:
     "Resultados reales de clientes que confían en Tu Fiscalista para su gestión fiscal.",
+  alternates: { canonical: "/casos" },
 };
 
 const caseStudies = [

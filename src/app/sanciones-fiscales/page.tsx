@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     "recurso sanción AEAT",
     "reducción sanción fiscal",
   ],
+  alternates: { canonical: "/sanciones-fiscales" },
 };
 
 const data = {

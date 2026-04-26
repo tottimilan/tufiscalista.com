@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     "defensa inspección AEAT",
     "procedimiento inspector",
   ],
+  alternates: { canonical: "/inspeccion-hacienda" },
 };
 
 const data = {

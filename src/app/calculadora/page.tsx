@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Calculadora Fiscal — Estima tu Ahorro",
   description:
     "Calcula cuánto podrías ahorrar en impuestos con una planificación fiscal profesional. Herramienta gratuita para autónomos y pymes en España.",
+  alternates: { canonical: "/calculadora" },
 };
 
 export default function CalculadoraPage() {

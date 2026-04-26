@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     "IVA autónomos",
     "declaraciones trimestrales",
   ],
+  alternates: { canonical: "/modelos-trimestrales-autonomos" },
 };
 
 const data = {

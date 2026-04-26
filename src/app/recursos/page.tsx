@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Recursos Fiscales Gratuitos | Tu Fiscalista",
   description:
     "Guías, herramientas y artículos gratuitos para autónomos y pymes. Calendario fiscal, calculadora de impuestos, blog y más.",
+  alternates: { canonical: "/recursos" },
 };
 
 const herramientas = [

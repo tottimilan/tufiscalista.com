@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Asesoría Fiscal para PYMES | Gestión y Estrategia Fiscal Empresarial",
   description:
     "Asesoría fiscal para PYMES con visión estratégica y gestión proactiva. Optimización fiscal, cumplimiento normativo y apoyo en decisiones de negocio para que tu empresa crezca con seguridad.",
+  alternates: { canonical: "/asesoria-fiscal-para-pymes" },
 };
 
 const data = {
