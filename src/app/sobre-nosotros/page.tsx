@@ -36,7 +36,6 @@ const values = [
 export default function SobreNosotrosPage() {
   const hasCredentials = AUTHOR.credentials.length > 0;
   const hasExperience = AUTHOR.experience.length > 0;
-  const hasCases = AUTHOR.caseStudies.length > 0;
   const externalLinks = Object.entries(AUTHOR.socialProfiles).filter(
     ([, url]) => typeof url === "string" && url.length > 0,
   ) as [string, string][];
@@ -262,45 +261,6 @@ export default function SobreNosotrosPage() {
                     </li>
                   ))}
               </ol>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* CASOS REPRESENTATIVOS */}
-      {hasCases && (
-        <section className="py-20 md:py-28">
-          <div className="container-premium">
-            <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-12">
-                <Badge variant="gold">Casos representativos</Badge>
-                <h2 className="mt-4 font-serif text-3xl md:text-4xl font-semibold">
-                  Trabajo real, resultados concretos
-                </h2>
-                <p className="mt-4 text-text-secondary max-w-2xl mx-auto">
-                  Casos anonimizados por confidencialidad pero con datos reales.
-                </p>
-              </div>
-
-              <div className="grid gap-6 md:grid-cols-2">
-                {AUTHOR.caseStudies.map((c, i) => (
-                  <ScrollReveal key={i} delay={i * 0.08}>
-                    <div className="h-full p-6 rounded-xl border border-border bg-bg-secondary/30 hover:border-accent/30 transition-colors">
-                      {c.sector && (
-                        <p className="text-xs font-medium tracking-wider uppercase text-accent mb-2">
-                          {c.sector}
-                        </p>
-                      )}
-                      <h3 className="font-serif text-lg font-semibold text-text-primary">
-                        {c.title}
-                      </h3>
-                      <p className="mt-3 text-sm text-text-secondary leading-relaxed">
-                        {c.description}
-                      </p>
-                    </div>
-                  </ScrollReveal>
-                ))}
-              </div>
             </div>
           </div>
         </section>

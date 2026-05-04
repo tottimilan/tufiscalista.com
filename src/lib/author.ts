@@ -52,12 +52,6 @@ export interface AuthorProfile {
     googleBusiness?: string;
     crunchbase?: string;
   };
-  /** Casos representativos (anonimizados, con dato cuantitativo) */
-  caseStudies: {
-    title: string;
-    description: string;
-    sector?: string;
-  }[];
 }
 
 export const AUTHOR: AuthorProfile = {
@@ -154,18 +148,6 @@ export const AUTHOR: AuthorProfile = {
     // reaf: "https://reaf.economistas.es/profesional/...",
   },
 
-  // ─────────────────────────────────────────────────────────────────────
-  // CASOS REPRESENTATIVOS (anonimizados con dato cuantitativo)
-  // ─────────────────────────────────────────────────────────────────────
-  caseStudies: [
-    // TODO: rellenar con 2-3 casos reales de Ali (anónimos, con cifra concreta)
-    // {
-    //   title: "Optimización fiscal de pyme tecnológica",
-    //   sector: "SaaS B2B",
-    //   description:
-    //     "Restructuración de la operativa fiscal de una pyme con 1.2M€ de facturación, reduciendo la carga del Impuesto de Sociedades un 22% legalmente mediante deducciones por I+D y planificación de inversiones.",
-    // },
-  ],
 };
 
 /**
