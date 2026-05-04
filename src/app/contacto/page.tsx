@@ -20,7 +20,7 @@ const contactMethods = [
     title: "Llamada directa",
     value: SITE.phoneDisplay,
     href: `tel:${SITE.phone}`,
-    desc: `Lun-Vie 9:00-18:00. Atención directa con el asesor.`,
+    desc: `${SITE.hours}. Atención directa con el asesor.`,
     type: "phone" as const,
   },
   {
@@ -128,13 +128,28 @@ export default function ContactoPage() {
           <div className="max-w-2xl mx-auto mt-12 text-center">
             <div className="rounded-xl border border-border bg-bg-secondary/30 p-8">
               <h2 className="font-serif text-2xl font-semibold text-text-primary mb-3">
-                Ubicación
+                Dónde estamos
               </h2>
-              <p className="text-text-secondary">
-                Madrid, España
+              <address className="not-italic text-text-secondary">
+                <p className="font-medium">{SITE.name}</p>
+                <p>{SITE.street}</p>
+                <p>
+                  {SITE.postalCode} {SITE.city} ({SITE.district})
+                </p>
+              </address>
+              <p className="text-text-muted text-sm mt-3">
+                {SITE.hours}
               </p>
-              <p className="text-text-muted text-sm mt-2">
-                Trabajamos de forma remota con clientes en toda España.
+              <a
+                href="https://maps.google.com/?q=Calle+de+Abtao+44+Madrid"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 mt-4 text-sm text-accent hover:underline"
+              >
+                Ver en Google Maps →
+              </a>
+              <p className="text-text-muted text-xs mt-4 border-t border-border pt-4">
+                También trabajamos de forma remota con clientes en toda España.
               </p>
             </div>
           </div>

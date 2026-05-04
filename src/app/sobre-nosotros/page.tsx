@@ -152,7 +152,15 @@ export default function SobreNosotrosPage() {
                 </h3>
                 <p className="text-text-secondary text-sm">
                   {AUTHOR.languages
-                    .map((l) => (l === "Spanish" ? "Español" : l === "English" ? "Inglés" : l))
+                    .map((l) =>
+                      l === "Spanish"
+                        ? "Español"
+                        : l === "English"
+                          ? "Inglés"
+                          : l === "Arabic"
+                            ? "Árabe"
+                            : l,
+                    )
                     .join(" · ")}
                 </p>
               </div>

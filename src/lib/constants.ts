@@ -9,8 +9,13 @@ export const SITE = {
   phone: "+34698249376",
   phoneDisplay: "+34 698 249 376",
   email: "info@tufiscalista.com",
-  hours: "Lun-Vie 9:00-18:00",
+  hours: "Todos los días 9:00-14:00",
+  // Dirección física (despacho en Madrid)
+  street: "Calle de Abtao, 44",
+  postalCode: "28007",
+  district: "Retiro",
   city: "Madrid",
+  region: "Madrid",
   country: "ES",
 } as const;
 

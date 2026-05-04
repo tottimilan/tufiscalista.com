@@ -84,6 +84,12 @@ export function Footer() {
               >
                 {SITE.email}
               </a>
+              <address className="not-italic text-xs text-text-muted leading-relaxed pt-1">
+                <p>{SITE.street}</p>
+                <p>
+                  {SITE.postalCode} {SITE.city}
+                </p>
+              </address>
               <p className="text-xs text-text-muted">{SITE.hours}</p>
             </div>
           </div>

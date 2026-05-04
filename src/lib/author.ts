@@ -95,7 +95,7 @@ export const AUTHOR: AuthorProfile = {
     "IVA y operaciones intracomunitarias",
   ],
 
-  languages: ["Spanish", "English"],
+  languages: ["Spanish", "Arabic"],
 
   // ─────────────────────────────────────────────────────────────────────
   // CREDENCIALES (placeholder — pedir a Ali los datos exactos)
