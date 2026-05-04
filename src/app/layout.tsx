@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { serif, sans } from "@/lib/fonts";
 import { SITE } from "@/lib/constants";
+import { buildPersonSchema } from "@/lib/author";
 import { jsonLd } from "@/lib/seo";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -126,29 +127,7 @@ function GlobalSchemas() {
     employee: { "@id": `${SITE.url}/sobre-nosotros#person` },
   };
 
-  const person = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "@id": `${SITE.url}/sobre-nosotros#person`,
-    name: SITE.advisor,
-    url: `${SITE.url}/sobre-nosotros`,
-    image: `${SITE.url}/ali.jpg`,
-    jobTitle: "Asesor Fiscal y Fundador",
-    worksFor: { "@id": `${SITE.url}#organization` },
-    knowsAbout: [
-      "Fiscalidad",
-      "IRPF",
-      "IVA",
-      "Impuesto de Sociedades",
-      "Contabilidad",
-      "Planificación fiscal",
-      "Fiscalidad de no residentes",
-      "Asesoría para autónomos",
-      "Asesoría para pymes",
-    ],
-    knowsLanguage: ["Spanish", "English"],
-    nationality: { "@type": "Country", name: "España" },
-  };
+  const person = buildPersonSchema();
 
   const website = {
     "@context": "https://schema.org",

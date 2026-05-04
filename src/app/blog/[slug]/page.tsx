@@ -10,6 +10,7 @@ import { TrackedCalLink } from "@/components/ui/TrackedCalLink";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { ReadingProgress } from "@/components/blog/ReadingProgress";
 import { TableOfContents } from "@/components/blog/TableOfContents";
+import { AuthorBox } from "@/components/blog/AuthorBox";
 import { SITE } from "@/lib/constants";
 import { articleSchema, breadcrumbSchema, jsonLd } from "@/lib/seo";
 
@@ -175,36 +176,7 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       </article>
 
-      {/* Author box */}
-      <section className="blog-reading-area blog-reading-area--warm pt-12 pb-16 md:pt-14 md:pb-20">
-        <div className="container-premium max-w-3xl mx-auto">
-          <div className="flex items-start gap-4 p-6 rounded-xl border border-[#e6dcc4] bg-[#fefcf6]">
-            <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-[#C8A977]/30 shrink-0">
-              <Image
-                src="/ali.jpg"
-                alt={`${SITE.advisor}, asesor fiscal`}
-                fill
-                sizes="56px"
-                className="object-cover"
-                quality={75}
-              />
-            </div>
-            <div>
-              <p className="font-semibold text-[#1a1a1a]">{SITE.advisor}</p>
-              <p className="text-sm text-[#6b6b6b] mt-0.5">
-                Asesor fiscal y fundador de {SITE.name}. Especializado en
-                fiscalidad para autónomos y pymes en España.
-              </p>
-              <Link
-                href="/sobre-nosotros"
-                className="inline-flex items-center gap-1 mt-2 text-sm text-[#b08d4c] hover:text-[#96783e] transition-colors"
-              >
-                Conocer más →
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <AuthorBox />
 
       {/* Final CTA */}
       <section className="py-16 md:py-24 bg-bg-secondary/30">
