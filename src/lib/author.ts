@@ -89,7 +89,7 @@ export const AUTHOR: AuthorProfile = {
     "IVA y operaciones intracomunitarias",
   ],
 
-  languages: ["Spanish", "Arabic"],
+  languages: ["Spanish", "Arabic", "English"],
 
   // ─────────────────────────────────────────────────────────────────────
   // CREDENCIALES (placeholder — pedir a Ali los datos exactos)
@@ -142,9 +142,9 @@ export const AUTHOR: AuthorProfile = {
   // PERFILES EXTERNOS (sameAs en schema.org — clave para autoridad)
   // ─────────────────────────────────────────────────────────────────────
   socialProfiles: {
-    // TODO: rellenar con URLs REALES de Ali
+    googleBusiness: "https://share.google/IfxM9fZ4CMdeMjysB",
+    // TODO: a\u00f1adir cuando est\u00e9n
     // linkedin: "https://www.linkedin.com/in/ali-el-yemlahy-...",
-    // googleBusiness: "https://g.page/tufiscalista",
     // reaf: "https://reaf.economistas.es/profesional/...",
   },
 

@@ -133,10 +133,11 @@ function GlobalSchemas() {
       telephone: SITE.phone,
       contactType: "customer service",
       areaServed: "ES",
-      availableLanguage: ["Spanish", "Arabic"],
+      availableLanguage: ["Spanish", "Arabic", "English"],
     },
     founder: { "@id": `${SITE.url}/sobre-nosotros#person` },
     employee: { "@id": `${SITE.url}/sobre-nosotros#person` },
+    sameAs: ["https://share.google/IfxM9fZ4CMdeMjysB"],
   };
 
   const person = buildPersonSchema();
