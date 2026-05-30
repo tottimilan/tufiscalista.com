@@ -94,7 +94,7 @@ Referencia: `../arquitectura-web-asesoria-premium-1.md`
 
 ## Anti-spam y seguridad
 
-- Honeypot fields en formularios ✅
+-  Honeypot fields en formularios ✅
 - Timing check (>2s) ✅
 - Rate limiting (3/min por IP) ✅
 - Cloudflare Turnstile (invisible CAPTCHA) ✅
